@@ -163,6 +163,7 @@
     </Compile>
     <Compile Include="Helpers\CalendarHelpers.cs" />
     <Compile Include="Helpers\iCalResult.cs" />
+    <Compile Include="Helpers\UrlHelper.cs" />
     <Compile Include="Models\Meeting.cs" />
     <Compile Include="Models\MeetingContext.cs" />
     <Compile Include="Models\RSVP.cs" />

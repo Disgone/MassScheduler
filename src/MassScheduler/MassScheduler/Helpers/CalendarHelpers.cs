@@ -10,12 +10,12 @@ namespace MassScheduler.Helpers
         {
             var eventLink = "http://nrddnr.com/" + meeting.Id;
             var evt = iCal.Create<Event>();
-            evt.Start = new iCalDateTime(meeting.StartDate);
-            evt.Duration = meeting.EndDate.Subtract(meeting.StartDate);
+            evt.Start = new iCalDateTime(meeting.StartDate.ToString(@"yyyyMMdd\THHmmss\Z"));
+            evt.End = new iCalDateTime(meeting.EndDate.ToString(@"yyyyMMdd\THHmmss\Z"));
             evt.Location = meeting.Location;
-            evt.Summary = String.Format("{0} Presented by: {1}", meeting.Descritpion, meeting.Speaker);
+            evt.Summary = meeting.Title;
             evt.Url = new Uri(eventLink);
-            evt.Description = eventLink;
+            evt.Description = String.Format("{0} Presented by: {1}", meeting.Descritpion, meeting.Speaker);
             return evt;
         }
     }
