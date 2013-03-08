@@ -38,7 +38,6 @@ namespace MassScheduler.Helpers
                 try
                 {
                     Event e = CalendarHelpers.MeetingToEvent(meeting, iCal);
-                    iCal.Events.Add(e);
                 }
                 catch (ArgumentOutOfRangeException)
                 {
