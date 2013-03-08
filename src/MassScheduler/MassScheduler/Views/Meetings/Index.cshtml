@@ -25,7 +25,7 @@
         
             <div class="event-bar interactive" data-eventid="@item.Id">
                 <div class="col1">
-                    @item.StartDate.ToShortTimeString() - @item.EndDate.ToShortTimeString()
+                    @item.StartDate.ToLocalTime().ToShortTimeString() - @item.EndDate.ToLocalTime().ToShortTimeString()
                 </div>
                 <div class="col2">
                     <div class="title-link">
@@ -46,7 +46,7 @@
                 </p>
                 @Html.ActionLink("View more details", "details", new { id = item.Id }) | I'm Going
                 @Html.ActionLink("RSVP!", "register", "rsvp", new { id = item.Id }, new { @class = "rsvp-button button", title = "RSVP to this Event" })
-                @Html.ActionLink("Add to my Calendar", "")
+                @Html.ActionLink("Add to my Calendar", "ical", "services", new { id = item.Id }, new { @class = "download-button button", title = "Add to Calendar" })
             </div>
         }
     }
