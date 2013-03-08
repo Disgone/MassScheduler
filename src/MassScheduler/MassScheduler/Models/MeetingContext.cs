@@ -6,10 +6,5 @@ namespace MassScheduler.Models
     {
         public IDbSet<Meeting> Meetings { get; set; }
         public IDbSet<RSVP> RSVPs { get; set; }
-
-        public MeetingContext()
-            : base("name=MeetingContext")
-        {
-        }
     }
 }

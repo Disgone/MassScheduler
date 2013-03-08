@@ -1,0 +1,58 @@
+﻿@model IEnumerable<MassScheduler.Models.Meeting>
+
+@{
+    ViewBag.Title = "Schedule";
+}
+
+<h2>Schedule of Events</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<section class="schedule">
+    @{
+        var dayNo = -1;
+        foreach (var item in Model)
+        {
+            if(dayNo != item.StartDate.DayOfYear)
+            {
+                dayNo = item.StartDate.DayOfYear;
+                <div class="group-date">
+                    @item.StartDate.ToLongDateString()
+                </div>
+            }
+        
+            <div class="event-bar interactive" data-eventid="@item.Id">
+                <div class="col1">
+                    @item.StartDate.ToShortTimeString() - @item.EndDate.ToShortTimeString()
+                </div>
+                <div class="col2">
+                    <div class="title-link">
+                        <i class="icon-@(item.IsUserAttending("spsmith") ? "is-" : "not-" )attending icon"></i>
+                        @Html.ActionLink(item.Title, "Details", new { id = item.Id }, new { @class = "title-link" })
+                    </div>
+                </div>
+                <div class="col3">
+                    @Html.DisplayFor(modelItem => item.Speaker)
+                </div>
+                <div class="col4">
+                    @Html.DisplayFor(modelItem => item.Location)
+                </div>
+            </div>
+            <div class="event-bar event-preview hidden @(item.IsUserAttending("spsmith") ? "is-" : "not-" )attending" id="e_@item.Id">
+                <p>
+                    @item.Descritpion
+                </p>
+                @Html.ActionLink("View more details", "details", new { id = item.Id }) | I'm Going
+                @Html.ActionLink("RSVP!", "register", "rsvp", new { id = item.Id }, new { @class = "rsvp-button button", title = "RSVP to this Event" })
+                @Html.ActionLink("Add to my Calendar", "")
+            </div>
+        }
+    }
+</section>
+
+@section scripts
+{
+    @Scripts.Render("~/scripts/site")
+}

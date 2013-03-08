@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace MassScheduler.Controllers
 {
-    public class RSVPController : Controller
+    public class RSVPController : ControllerBase
     {
         //
         // GET: /RSVP/

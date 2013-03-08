@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
+using MassScheduler.Validation;
 
 namespace MassScheduler.Models
 {
@@ -15,7 +16,7 @@ namespace MassScheduler.Models
         [StringLength(75, ErrorMessage = "Title may not be longer than 75 characters.")]
         public string Title { get; set; }
 
-        [StringLength(256, ErrorMessage = "Description cannot be more than 256 characters.")]
+        [DataType(DataType.MultilineText)]
         public string Descritpion { get; set; }
 
         [Display(Name = "Start Date")]
@@ -24,6 +25,7 @@ namespace MassScheduler.Models
 
         [Display(Name = "End Date")]
         [Required(ErrorMessage = "End date is required.")]
+        [DateIsBefore("StartDate", "End date must be after start date.")]
         public DateTime EndDate { get; set; }
 
         [Display(Name = "Speaker(s)")]
@@ -36,8 +38,15 @@ namespace MassScheduler.Models
         [Display(Name = "Contact Information")]
         public string Contact { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
         [Display(Name = "Creator")]
         public string Creator { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        public DateTime Created { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        public DateTime Modified { get; set; }
 
         public virtual ICollection<RSVP> RSVP { get; set; } 
 

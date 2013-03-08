@@ -1,0 +1,156 @@
+﻿@import 'settings';
+@import 'normalize';
+
+body {
+    background-color: @backgroundColor;
+    color: @fontColor;
+    font-size: @fontSize;
+    font-family: @fontFamily;
+    line-height: @lineHeight;
+}
+
+a {
+    color: @green;
+    text-decoration: none;
+
+    &:hover {
+        color: darken(@green, 20%);
+    }
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+
+    th {
+        text-align: left;
+        font-weight: normal;
+    }
+
+    th, 
+    td {
+        padding: .25em;
+        vertical-align: top;
+    }
+}
+
+.wrapper {
+    width: 90%;
+}
+
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    padding: 0 0 0 1.5em;
+    width: 200px;
+    height: 100%;
+
+    header {
+        position: relative;
+        margin-bottom: @lineHeight*2;
+        border-bottom: 1px solid darken(@backgroundColor,15%);
+    }
+
+    h1 {
+        color: @green;
+        margin-top: 35px;
+    }
+}
+
+#menu {
+    position: relative;
+    margin: 0;
+    padding: 0;
+
+    li {
+        border-bottom: 1px solid darken(@backgroundColor,20%);
+        list-style: none;
+        line-height: @lineHeight*2;
+
+        a {
+            display: block;
+            text-indent: .75em;
+
+            &:hover,
+            &:active {
+                background-color: darken(@backgroundColor,10%);
+            }
+        }
+    }
+}
+
+.c-main {
+    float: left;
+    margin-left: 250px;
+    padding-top: 35px;
+    width: 85%;
+}
+
+.schedule {
+    width: 100%;
+
+    .group-date {
+        background: darken(@backgroundColor, 30%);
+        padding: 10px;
+        font-size: 1.1em;
+    }
+
+    .event-bar {
+        position: relative;
+        clear: both;
+        overflow: hidden;
+        padding: 10px;
+        border-bottom: 1px solid darken(@backgroundColor,20%);
+    }
+}
+
+.col1,
+.col2,
+.col3,
+.col4 {
+    float: left;
+    overflow: hidden;
+    position: relative;
+}
+
+.col1 {
+    width: 25%;
+}
+
+.col2 {
+    width: 45%;
+}
+
+.col3,
+.col4 {
+    width: 15%;
+}
+
+.col4 {
+    float: right;
+}
+
+.hidden {
+    display: none;
+}
+
+[class^="icon-"], 
+[class*=" icon-"] 
+{
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-top: 1px;
+    line-height: 14px;
+    background-repeat: no-repeat;
+}
+
+.icon-is-attending {
+
+}
+
+.icon-not-attending {
+
+}

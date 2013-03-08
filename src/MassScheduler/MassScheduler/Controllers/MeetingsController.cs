@@ -1,19 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MassScheduler.Models;
 
 namespace MassScheduler.Controllers
 {
-    public class MeetingsController : Controller
+    public class MeetingsController : ControllerBase
     {
+
         //
         // GET: /Meetings/
 
         public ActionResult Index()
         {
-            return View();
+            var meetings = db.Meetings
+                             .Where(x => x.EndDate >= DateTime.UtcNow)
+                             .OrderBy(x => x.StartDate);
+
+
+            return View(meetings);
         }
 
         //
@@ -21,7 +29,14 @@ namespace MassScheduler.Controllers
 
         public ActionResult Details(int id)
         {
-            return View();
+            var meeting = db.Meetings.Find(id);
+
+            if (meeting == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(meeting);
         }
 
         //
@@ -29,25 +44,37 @@ namespace MassScheduler.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            var meeting = new Meeting()
+            {
+                StartDate = DateTime.UtcNow.AddHours(1),
+                EndDate = DateTime.UtcNow.AddHours(2),
+                Created = DateTime.UtcNow,
+                Modified = DateTime.UtcNow,
+                Contact = CurrentUser.EmailAddress
+            };
+
+            return View(meeting);
         }
 
         //
         // POST: /Meetings/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Meeting meeting)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                meeting.Creator = CurrentUser.Username;
+                meeting.Created = DateTime.UtcNow;
+                meeting.Modified = DateTime.UtcNow;
+
+                db.Meetings.Add(meeting);
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(meeting);
         }
 
         //
@@ -55,7 +82,19 @@ namespace MassScheduler.Controllers
 
         public ActionResult Edit(int id)
         {
-            return View();
+            var meeting = db.Meetings.Find(id);
+
+            if (meeting == null)
+            {
+                return HttpNotFound();
+            }
+
+            if (meeting.Creator != CurrentUser.Username)
+            {
+                return View("InvalidOwner");
+            }
+
+            return View(meeting);
         }
 
         //
@@ -78,7 +117,6 @@ namespace MassScheduler.Controllers
 
         //
         // GET: /Meetings/Delete/5
-
         public ActionResult Delete(int id)
         {
             return View();
