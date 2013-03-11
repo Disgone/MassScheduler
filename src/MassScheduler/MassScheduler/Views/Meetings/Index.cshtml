@@ -1,15 +1,20 @@
-﻿@model IEnumerable<MassScheduler.Models.Meeting>
+﻿@using MassScheduler.Models
+@model IEnumerable<Meeting>
 
 @{
-    ViewBag.Title = "Schedule";
+    ViewBag.Title = "Schedule of Events";
+    var user = ViewBag.CurrentUser as UserInformation;
 }
 
-<h2>Schedule of Events</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
+<heading>
+    <h1>@ViewBag.Title</h1>
+    <nav>
+        <ul>
+            <li>@Html.RouteLink("Download Calendar", "iCalFeed")</li>
+            <li>@Html.ActionLink("Create New", "create")</li>
+        </ul>
+    </nav>
+</heading>
 <section class="schedule">
     @{
         var dayNo = -1;
@@ -22,31 +27,35 @@
                     @item.StartDate.ToLongDateString()
                 </div>
             }
-        
-            <div class="event-bar interactive" data-eventid="@item.Id">
-                <div class="col1">
-                    @item.StartDate.ToLocalTime().ToShortTimeString() - @item.EndDate.ToLocalTime().ToShortTimeString()
-                </div>
-                <div class="col2">
-                    <div class="title-link">
-                        <i class="icon-@(item.IsUserAttending("spsmith") ? "is-" : "not-" )attending icon"></i>
-                        @Html.ActionLink(item.Title, "Details", new { id = item.Id }, new { @class = "title-link" })
+            <div id="event-@item.Id" class="event @(item.IsUserAttending(user.Username) ? "attending" : "" )" data-attending="@(item.IsUserAttending(user.Username) ? "1" : "0" )" data-eventid="@item.Id">
+                <div class="event-bar interactive">
+                    <div class="col1">
+                        @item.StartDate.ToLocalTime().ToShortTimeString() - @item.EndDate.ToLocalTime().ToShortTimeString()
+                    </div>
+                    <div class="col2">
+                        <div class="title-link">
+                            <i class="icon-attending icon"></i>
+                            @Html.ActionLink(item.Title, "Details", new { id = item.Id }, new { @class = "title-link" })
+                        </div>
+                    </div>
+                    <div class="col3">
+                        @Html.DisplayFor(modelItem => item.Speaker)
+                    </div>
+                    <div class="col4">
+                        @Html.DisplayFor(modelItem => item.Location)
                     </div>
                 </div>
-                <div class="col3">
-                    @Html.DisplayFor(modelItem => item.Speaker)
+                <div class="event-bar event-preview hidden" id="e_@item.Id">
+                    <p>
+                        @item.Descritpion
+                    </p>
+                    <ul class='action-bar'>
+                        <li>@Html.ActionLink("View more details", "details", new { id = item.Id })</li>
+                        <li>@Html.ActionLink("RSVP!", "register", "rsvp", new { id = item.Id }, new { @class = "rsvp-button button", title = "RSVP to this Event" })</li>
+                        <li>@Html.ActionLink("Cancel my RSVP", "cancel", "rsvp", new { id = item.Id }, new { @class = "cancel-rsvp-button button", title = "Cancel my RSVP" })</li>
+                        <li>@Html.ActionLink("Add to my Calendar", "ical", "services", new { id = item.Id }, new { @class = "download-button button", title = "Add to Calendar" })</li>
+                    </ul>
                 </div>
-                <div class="col4">
-                    @Html.DisplayFor(modelItem => item.Location)
-                </div>
-            </div>
-            <div class="event-bar event-preview hidden @(item.IsUserAttending("spsmith") ? "is-" : "not-" )attending" id="e_@item.Id">
-                <p>
-                    @item.Descritpion
-                </p>
-                @Html.ActionLink("View more details", "details", new { id = item.Id }) | I'm Going
-                @Html.ActionLink("RSVP!", "register", "rsvp", new { id = item.Id }, new { @class = "rsvp-button button", title = "RSVP to this Event" })
-                @Html.ActionLink("Add to my Calendar", "ical", "services", new { id = item.Id }, new { @class = "download-button button", title = "Add to Calendar" })
             </div>
         }
     }

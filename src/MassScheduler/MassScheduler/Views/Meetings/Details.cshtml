@@ -1,71 +1,52 @@
-﻿@model MassScheduler.Models.Meeting
+﻿@using MassScheduler.Models
+@model Meeting
 
 @{
     ViewBag.Title = "Details";
+    var user = ViewBag.CurrentUser as UserInformation;
 }
 
-<h2>Details</h2>
+<heading>
+    <h1>@Model.Title</h1>
+    <h2>Presented by <em>@Model.Speaker</em></h2>
+</heading>
+<div class="schedule">
+    <section class="event @(Model.IsUserAttending(user.Username) ? "attending" : "" )" id="event-@Model.Id" data-attending="@(Model.IsUserAttending(user.Username) ? "1" : "0" )">
+        <div class="meeting-meta">
+            @Model.StartDate.ToLongDateString()
+            <dl>
+                <dt>When:</dt> 
+                <dd>@Model.StartDate.ToShortTimeString() - @Model.EndDate.ToShortTimeString()</dd>
+                <dt>Where:</dt> 
+                <dd>@Model.Location</dd>
+            </dl>
+        
+        </div>
+    
+        <ul class='action-bar'>
+            @if (user.Username == Model.Creator)
+            {
+                <li>@Html.ActionLink("Edit this Event", "edit", new { id = Model.Id })</li>
+                <li>@Html.ActionLink("Delete Event", "delete", new { id = Model.Id })</li>
+            }
+            <li>@Html.ActionLink("RSVP!", "register", "rsvp", new { id = Model.Id }, new { @class = "rsvp-button button", title = "RSVP to this Event" })</li>
+            <li>@Html.ActionLink("Cancel my RSVP", "cancel", "rsvp", new { id = Model.Id }, new { @class = "cancel-rsvp-button button", title = "Cancel my RSVP" })</li>
+            <li>@Html.ActionLink("Add to my Calendar", "ical", "services", new { id = Model.Id }, new { @class = "download-button button", title = "Add to Calendar" })</li>
+        </ul>
 
-<fieldset>
-    <legend>Meeting</legend>
+        <p>@Model.Descritpion</p>
+    
+        <h3>Who's Attending:</h3>
+        <ul>
+            @foreach (var r in Model.RSVP)
+            {
+                <li>@r.AttendeeName</li>
+            }
+        </ul>
+    </section>
+</div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Title)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Title)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Descritpion)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Descritpion)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.StartDate)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.StartDate)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.EndDate)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.EndDate)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Speaker)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Speaker)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Location)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Location)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Contact)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Contact)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Creator)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Creator)
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+@section scripts
+{
+    @Scripts.Render("~/scripts/site")
+}

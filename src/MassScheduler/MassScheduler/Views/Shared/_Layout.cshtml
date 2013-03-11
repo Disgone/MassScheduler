@@ -8,6 +8,7 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
         @Styles.Render("~/css")
         @Scripts.Render("~/scripts/modernizr")
+        @RenderSection("headinc", required: false)
     </head>
     <body>
         <div class="wrapper">
@@ -24,10 +25,12 @@
                 </nav>
             </aside>
             <section class="c-main" role="main">
-                @RenderBody()
-                <footer>
-                </footer>
+                <div class="page">
+                    @RenderBody()
+                </div>
             </section>
+            <footer>
+            </footer>
         </div>
         @Scripts.Render("~/scripts/jquery")
         @RenderSection("scripts", required: false)

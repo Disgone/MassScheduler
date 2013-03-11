@@ -48,7 +48,7 @@ namespace MassScheduler.Models
         [HiddenInput(DisplayValue = false)]
         public DateTime Modified { get; set; }
 
-        public virtual ICollection<RSVP> RSVP { get; set; } 
+        public virtual ICollection<RSVP> RSVP { get; set; }
 
         public bool IsUserAttending(string username)
         {

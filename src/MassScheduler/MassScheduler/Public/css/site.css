@@ -455,6 +455,44 @@ table td {
 .hidden {
   display: none;
 }
+.meeting-meta dt {
+  font-weight: bold;
+  display: block;
+  float: left;
+  width: 75px;
+}
+.action-bar {
+  list-style: none;
+  padding: 0;
+}
+.action-bar li {
+  display: inline;
+}
+.action-bar li:before {
+  content: " | ";
+}
+.action-bar li:first-child:before {
+  content: "";
+}
+/*
+    Forms
+*/
+fieldset input[type='text'] {
+  width: 50%;
+  max-width: 700px;
+}
+fieldset textarea {
+  width: 50%;
+  max-width: 700px;
+  height: 15em;
+}
+fieldset label {
+  font-weight: bold;
+}
+fieldset input[type='text'],
+fieldset textarea {
+  margin-bottom: 10px;
+}
 [class^="icon-"],
 [class*=" icon-"] {
   display: inline-block;
@@ -463,4 +501,7 @@ table td {
   margin-top: 1px;
   line-height: 14px;
   background-repeat: no-repeat;
+}
+.attending .icon-attending {
+  background-image: url('../img/star.png');
 }

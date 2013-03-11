@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using MassScheduler.Models;
 
 namespace MassScheduler.Controllers
 {
+    [Authorize]
     public class MeetingsController : ControllerBase
     {
-
-        //
-        // GET: /Meetings/
 
         public ActionResult Index()
         {
@@ -20,12 +15,9 @@ namespace MassScheduler.Controllers
                              .Where(x => x.EndDate >= DateTime.UtcNow)
                              .OrderBy(x => x.StartDate);
 
-
+            ViewBag.CurrentUser = CurrentUser;
             return View(meetings);
         }
-
-        //
-        // GET: /Meetings/Details/5
 
         public ActionResult Details(int id)
         {
@@ -36,18 +28,21 @@ namespace MassScheduler.Controllers
                 return HttpNotFound();
             }
 
+            meeting.StartDate = TimeZone.CurrentTimeZone.ToLocalTime(meeting.StartDate);
+            meeting.EndDate = TimeZone.CurrentTimeZone.ToLocalTime(meeting.EndDate);
+
+            ViewBag.CurrentUser = CurrentUser;
             return View(meeting);
         }
 
-        //
-        // GET: /Meetings/Create
-
         public ActionResult Create()
         {
+            var date = GetNextTimeIncrement(DateTime.Now);
+
             var meeting = new Meeting()
             {
-                StartDate = DateTime.UtcNow.AddHours(1),
-                EndDate = DateTime.UtcNow.AddHours(2),
+                StartDate = date,
+                EndDate = date.AddHours(1),
                 Created = DateTime.UtcNow,
                 Modified = DateTime.UtcNow,
                 Contact = CurrentUser.EmailAddress
@@ -55,9 +50,6 @@ namespace MassScheduler.Controllers
 
             return View(meeting);
         }
-
-        //
-        // POST: /Meetings/Create
 
         [HttpPost]
         public ActionResult Create(Meeting meeting)
@@ -68,6 +60,9 @@ namespace MassScheduler.Controllers
                 meeting.Created = DateTime.UtcNow;
                 meeting.Modified = DateTime.UtcNow;
 
+                meeting.StartDate = TimeZone.CurrentTimeZone.ToUniversalTime(meeting.StartDate);
+                meeting.EndDate = TimeZone.CurrentTimeZone.ToUniversalTime(meeting.EndDate);
+
                 db.Meetings.Add(meeting);
                 db.SaveChanges();
 
@@ -76,9 +71,6 @@ namespace MassScheduler.Controllers
 
             return View(meeting);
         }
-
-        //
-        // GET: /Meetings/Edit/5
 
         public ActionResult Edit(int id)
         {
@@ -94,36 +86,49 @@ namespace MassScheduler.Controllers
                 return View("InvalidOwner");
             }
 
+            meeting.StartDate = TimeZone.CurrentTimeZone.ToLocalTime(meeting.StartDate);
+            meeting.EndDate = TimeZone.CurrentTimeZone.ToLocalTime(meeting.EndDate);
+
             return View(meeting);
         }
-
-        //
-        // POST: /Meetings/Edit/5
 
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
+            Meeting meeting = db.Meetings.Find(id);
+
+            if (meeting == null)
+            {
+                return HttpNotFound();
+            }
+
+            if (meeting.Creator != CurrentUser.Username)
+            {
+                return View("InvalidOwner");
+            }
+
             try
             {
-                // TODO: Add update logic here
+                UpdateModel(meeting);
+                meeting.StartDate = TimeZone.CurrentTimeZone.ToUniversalTime(meeting.StartDate);
+                meeting.EndDate = TimeZone.CurrentTimeZone.ToUniversalTime(meeting.EndDate);
+                meeting.Modified = DateTime.UtcNow;
 
-                return RedirectToAction("Index");
+                db.SaveChanges();
+
+                return RedirectToAction("details", new {id = meeting.Id});
             }
             catch
             {
-                return View();
+                return View(meeting);
             }
         }
 
-        //
-        // GET: /Meetings/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        //
-        // POST: /Meetings/Delete/5
 
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
@@ -138,6 +143,26 @@ namespace MassScheduler.Controllers
             {
                 return View();
             }
+        }
+
+        private DateTime GetNextTimeIncrement(DateTime date)
+        {
+            if (date.Minute > 45)
+            {
+                return date.AddMinutes(60 - date.Minute);
+            }
+
+            if (date.Minute > 30)
+            {
+                return date.AddMinutes(45 - date.Minute);
+            }
+
+            if (date.Minute > 15)
+            {
+                return date.AddMinutes(30 - date.Minute);
+            }
+
+            return date.AddMinutes(15 - date.Minute);
         }
     }
 }
