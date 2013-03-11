@@ -126,23 +126,37 @@ namespace MassScheduler.Controllers
 
         public ActionResult Delete(int id)
         {
-            return View();
+            var meeting = db.Meetings.Find(id);
+
+            if (meeting == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(meeting);
         }
 
 
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            var meeting = db.Meetings.Find(id);
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (meeting == null)
             {
-                return View();
+                return HttpNotFound();
             }
+
+            var rsvps = meeting.RSVP.ToList();
+            foreach (var rsvp in rsvps)
+            {
+                db.RSVPs.Remove(rsvp);
+            }
+            db.Meetings.Remove(meeting);
+
+            db.SaveChanges();
+
+            return RedirectToAction("index");
         }
 
         private DateTime GetNextTimeIncrement(DateTime date)
