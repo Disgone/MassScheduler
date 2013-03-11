@@ -163,6 +163,7 @@
     </Compile>
     <Compile Include="Helpers\CalendarHelpers.cs" />
     <Compile Include="Helpers\iCalResult.cs" />
+    <Compile Include="Helpers\RssResult.cs" />
     <Compile Include="Helpers\UrlHelper.cs" />
     <Compile Include="Models\Meeting.cs" />
     <Compile Include="Models\MeetingContext.cs" />
@@ -313,10 +314,11 @@
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Views\Meetings\InvalidOwner.cshtml" />
     <Content Include="Views\Meetings\Edit.cshtml" />
+    <Content Include="Views\RSVP\Register.cshtml" />
+    <Content Include="Views\RSVP\Cancel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Public\img\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
