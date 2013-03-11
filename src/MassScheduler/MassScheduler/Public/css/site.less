@@ -2,7 +2,6 @@
 @import 'normalize';
 
 body {
-    background-color: @backgroundColor;
     color: @fontColor;
     font-size: @fontSize;
     font-family: @fontFamily;
@@ -34,65 +33,43 @@ table {
     }
 }
 
-.wrapper {
-    width: 90%;
-}
-
-#sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 5;
-    padding: 0 0 0 1.5em;
-    width: 200px;
-    height: 100%;
-
-    header {
-        position: relative;
-        margin-bottom: @lineHeight*2;
-        border-bottom: 1px solid darken(@backgroundColor,15%);
-    }
-
-    h1 {
-        color: @green;
-        margin-top: 35px;
-    }
+h1,h2,h3,h4,h5,h6 {
+    font-weight: normal;
 }
 
 #menu {
-    position: relative;
     margin: 0;
     padding: 0;
+    overflow: hidden;
 
     li {
-        border-bottom: 1px solid darken(@backgroundColor,20%);
         list-style: none;
-        line-height: @lineHeight*2;
+        float: left;
+    }
 
-        a {
-            display: block;
-            text-indent: .75em;
+    a {
+        display: block;
+        background-color: @lightGreen;
+        padding: .5em 1.25em;
+        .transition(background-color 250ms ease-out);
 
-            &:hover,
-            &:active {
-                background-color: darken(@backgroundColor,10%);
-            }
+        &:hover,
+        &:focus {
+            background-color: darken(@lightGreen, 10%);
         }
     }
 }
 
-.c-main {
-    float: left;
-    margin-left: 250px;
-    padding-top: 35px;
-    width: 85%;
+.wrapper {
+    width: 90%;
+    margin: 2em auto;
 }
 
 .schedule {
     width: 100%;
 
     .group-date {
-        background: darken(@backgroundColor, 30%);
+        background: darken(@lightGreen, 30%);
         padding: 10px;
         font-size: 1.1em;
     }
@@ -102,7 +79,7 @@ table {
         clear: both;
         overflow: hidden;
         padding: 10px;
-        border-bottom: 1px solid darken(@backgroundColor,20%);
+        border-bottom: 1px solid darken(@lightGreen,20%);
     }
 }
 

@@ -7,8 +7,8 @@
 }
 
 <heading>
-    <h1>@Model.Title</h1>
-    <h2>Presented by <em>@Model.Speaker</em></h2>
+    <h2>@Model.Title</h2>
+    <h3>Presented by <em>@Model.Speaker</em></h3>
 </heading>
 <div class="schedule">
     <section class="event @(Model.IsUserAttending(user.Username) ? "attending" : "" )" id="event-@Model.Id" data-attending="@(Model.IsUserAttending(user.Username) ? "1" : "0" )">
@@ -36,7 +36,7 @@
 
         <p>@Model.Descritpion</p>
     
-        <h3>Attendees (@Model.RSVP.Count):</h3>
+        <h4>Attendees (@Model.RSVP.Count):</h4>
         @if (Model.RSVP.Any())
         {
             <ul>
