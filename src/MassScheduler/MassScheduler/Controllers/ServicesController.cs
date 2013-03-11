@@ -10,8 +10,20 @@ namespace MassScheduler.Controllers
 {
     public class ServicesController : ControllerBase
     {
-        //
-        // GET: /Services/
+        [AllowAnonymous]
+        [OutputCache(VaryByParam = "none", Duration = 300)]
+        public ActionResult RSS()
+        {
+            var meetings = db.Meetings.Where(x => x.EndDate > DateTime.UtcNow);
+
+            if (!meetings.Any())
+            {
+                return View("NoMeetings");
+            }
+
+            return new RssResult(meetings.ToList(), "Upcoming Events");
+        }
+        
         [AllowAnonymous]
         public ActionResult iCal(int id)
         {
@@ -38,7 +50,7 @@ namespace MassScheduler.Controllers
                 return View("NoMeetings");
             }
 
-            return new iCalResult(meetings.ToList(), "Events.ics");
+            return new iCalResult(meetings.ToList(), "Calendar.ics");
         }
 
         public ActionResult MyEvents(string username)
