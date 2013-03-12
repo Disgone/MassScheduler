@@ -35,7 +35,7 @@
             @Html.DisplayFor(modelItem => item.Organization)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Bio)
+            @Html.Markdown(item.Bio)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Photo)

@@ -1,43 +1,24 @@
 ﻿@model MassScheduler.Models.Speaker
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.Name;
 }
 
-<h2>Details</h2>
-
-<fieldset>
-    <legend>Speaker</legend>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Name)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Name)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Organization)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Organization)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Bio)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Bio)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Photo)
-    </div>
-    <div class="display-field">
-         @Html.UploadedImage(Model.Photo)
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<header>
+    <h2>@ViewBag.Title</h2>
+</header>
+<section class="split-view speaker bio">
+    <aside class="split-left">
+        <div class="profile-image">
+            @Html.UploadedImage(Model.Photo)
+        </div>
+        <ul class="list-plain profile-meta">
+            <li><strong>@Model.Title</strong></li>
+            <li>@Model.Organization</li>
+            <li>@Html.MailTo(Model.Email, Model.Email)</li>
+        </ul>
+    </aside>
+    <article class="split-right">
+        @Html.Markdown(Model.Bio)
+    </article>
+</section>

@@ -84,15 +84,15 @@ h4 {
     }
 }
 
-#event-details {
+.split-view {
     overflow: hidden;
 
-    section {
+    .split-left {
         float: left;
         width: 35%;
     }
 
-    aside {
+    .split-right {
         margin-left: 40%;
     }
 }
@@ -146,7 +146,9 @@ fieldset {
         margin-bottom: 1em;
     }
 
-    input[type='text'] {
+    input[type='text'],
+    input[type='email'],
+    input[type='number'] {
         max-width: 700px;
         width: 50%;
     }
@@ -162,6 +164,8 @@ fieldset {
     }
 
     input[type='text'],
+    input[type='email'],
+    input[type='number'],
     textarea {
         margin-bottom: 10px;
         padding: 3px;

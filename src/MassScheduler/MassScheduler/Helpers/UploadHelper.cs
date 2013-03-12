@@ -9,7 +9,7 @@ namespace MassScheduler.Helpers
 {
     public class UploadHelper
     {
-        public static string HandleUploadedImage(HttpPostedFileBase photo, int maxWidth = 100, int maxHeight = 100)
+        public static string HandleUploadedImage(HttpPostedFileBase photo, int maxWidth = 200, int maxHeight = 200)
         {
             var uploadDirectory = WebConfigurationManager.AppSettings["UploadDirectory"];
             var uploadPath = HttpContext.Current.Server.MapPath(uploadDirectory);
