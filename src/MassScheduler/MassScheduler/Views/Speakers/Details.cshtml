@@ -4,21 +4,18 @@
     ViewBag.Title = Model.Name;
 }
 
-<header>
-    <h2>@ViewBag.Title</h2>
-</header>
-<section class="split-view speaker bio">
-    <aside class="split-left">
-        <div class="profile-image">
+<hgroup>
+    <h1>@Html.ActionLink("Speakers", "index", "speakers")</h1>
+</hgroup>
+<div class="split-view">
+    <article class="speaker details">
+        <hgroup>
+            <h1>@Model.Name</h1>
             @Html.UploadedImage(Model.Photo)
-        </div>
-        <ul class="list-plain profile-meta">
-            <li><strong>@Model.Title</strong></li>
-            <li>@Model.Organization</li>
-            <li>@Html.MailTo(Model.Email, Model.Email)</li>
-        </ul>
-    </aside>
-    <article class="split-right">
+        </hgroup>
         @Html.Markdown(Model.Bio)
     </article>
-</section>
+    <aside>
+        
+    </aside>
+</div>
