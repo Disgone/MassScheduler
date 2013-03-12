@@ -52,18 +52,5 @@ namespace MassScheduler.Controllers
 
             return new iCalResult(meetings.ToList(), "Calendar.ics");
         }
-
-        public ActionResult MyEvents(string username)
-        {
-            var meetings = db.Meetings.Where(x => x.EndDate > DateTime.UtcNow).ToList();
-            var myMeetings = meetings.Where(x => x.IsUserAttending(username)).ToList();
-
-            if (!myMeetings.Any())
-            {
-                return View("NoMeetings");
-            }
-
-            return new iCalResult(myMeetings, "MyEvents.ics");
-        }
     }
 }
