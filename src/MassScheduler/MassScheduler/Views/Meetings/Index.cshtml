@@ -17,46 +17,53 @@
 </heading>
 <section class="schedule">
     @{
-        var dayNo = -1;
-        foreach (var item in Model)
+        if (Model.Any())
         {
-            if(dayNo != item.StartDate.DayOfYear)
+            var dayNo = -1;
+            foreach (var item in Model)
             {
-                dayNo = item.StartDate.DayOfYear;
-                <div class="group-date">
-                    @item.StartDate.ToLongDateString()
-                </div>
-            }
-            <div id="event-@item.Id" class="event @(item.IsUserAttending(user.Username) ? "attending" : "" )" data-attending="@(item.IsUserAttending(user.Username) ? "1" : "0" )" data-eventid="@item.Id">
-                <div class="event-bar interactive">
-                    <div class="col1">
-                        @item.StartDate.ToLocalTime().ToShortTimeString() - @item.EndDate.ToLocalTime().ToShortTimeString()
+                if (dayNo != item.StartDate.DayOfYear)
+                {
+                    dayNo = item.StartDate.DayOfYear;
+                    <div class="group-date">
+                        @item.StartDate.ToLongDateString()
                     </div>
-                    <div class="col2">
-                        <div class="title-link">
-                            <i class="icon-attending icon"></i>
-                            @Html.ActionLink(item.Title, "Details", new { id = item.Id }, new { @class = "title-link" })
+                }
+                <div id="event-@item.Id" class="event @(item.IsUserAttending(user.Username) ? "attending" : "")" data-attending="@(item.IsUserAttending(user.Username) ? "1" : "0")" data-eventid="@item.Id">
+                    <div class="event-bar interactive">
+                        <div class="col1">
+                            @item.StartDate.ToLocalTime().ToShortTimeString() - @item.EndDate.ToLocalTime().ToShortTimeString()
+                        </div>
+                        <div class="col2">
+                            <div class="title-link">
+                                <i class="icon-attending icon"></i>
+                                @Html.ActionLink(item.Title, "Details", new {id = item.Id}, new {@class = "title-link"})
+                            </div>
+                        </div>
+                        <div class="col3">
+                            @Html.DisplayFor(modelItem => item.Speaker)
+                        </div>
+                        <div class="col4">
+                            @Html.DisplayFor(modelItem => item.Location)
                         </div>
                     </div>
-                    <div class="col3">
-                        @Html.DisplayFor(modelItem => item.Speaker)
-                    </div>
-                    <div class="col4">
-                        @Html.DisplayFor(modelItem => item.Location)
+                    <div class="event-bar event-preview hidden" id="e_@item.Id">
+                        <p>
+                            @item.Descritpion
+                        </p>
+                        <ul class='action-bar'>
+                            <li>@Html.ActionLink("View more details", "details", new {id = item.Id})</li>
+                            <li>@Html.ActionLink("RSVP!", "register", "rsvp", new {id = item.Id}, new {@class = "rsvp-button button", title = "RSVP to this Event"})</li>
+                            <li>@Html.ActionLink("Cancel my RSVP", "cancel", "rsvp", new {id = item.Id}, new {@class = "cancel-rsvp-button button", title = "Cancel my RSVP"})</li>
+                            <li>@Html.ActionLink("Add to my Calendar", "ical", "services", new {id = item.Id}, new {@class = "download-button button", title = "Add to Calendar"})</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="event-bar event-preview hidden" id="e_@item.Id">
-                    <p>
-                        @item.Descritpion
-                    </p>
-                    <ul class='action-bar'>
-                        <li>@Html.ActionLink("View more details", "details", new { id = item.Id })</li>
-                        <li>@Html.ActionLink("RSVP!", "register", "rsvp", new { id = item.Id }, new { @class = "rsvp-button button", title = "RSVP to this Event" })</li>
-                        <li>@Html.ActionLink("Cancel my RSVP", "cancel", "rsvp", new { id = item.Id }, new { @class = "cancel-rsvp-button button", title = "Cancel my RSVP" })</li>
-                        <li>@Html.ActionLink("Add to my Calendar", "ical", "services", new { id = item.Id }, new { @class = "download-button button", title = "Add to Calendar" })</li>
-                    </ul>
-                </div>
-            </div>
+            }
+        }
+        else
+        {
+            <p>There are currently no upcoming events scheduled.</p>
         }
     }
 </section>

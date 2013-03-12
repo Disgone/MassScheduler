@@ -241,6 +241,12 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Public\css\normalize.less" />
+    <Content Include="Public\css\normalize.css">
+      <DependentUpon>normalize.less</DependentUpon>
+    </Content>
+    <Content Include="Public\css\normalize.min.css">
+      <DependentUpon>normalize.less</DependentUpon>
+    </Content>
     <Content Include="Public\css\settings.css">
       <DependentUpon>settings.less</DependentUpon>
     </Content>
@@ -319,6 +325,7 @@
     <Content Include="Views\RSVP\Register.cshtml" />
     <Content Include="Views\RSVP\Cancel.cshtml" />
     <Content Include="Views\Meetings\Delete.cshtml" />
+    <Content Include="Views\Services\NoMeetings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

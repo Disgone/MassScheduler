@@ -18,39 +18,63 @@ a {
 }
 
 table {
-    border-collapse: collapse;
     width: 100%;
+    border-collapse: collapse;
 
     th {
         text-align: left;
         font-weight: normal;
     }
 
-    th, 
+    th,
     td {
         padding: .25em;
         vertical-align: top;
     }
 }
 
-h1,h2,h3,h4,h5,h6 {
+p {
+    margin: 0 0 1.5em;
+}
+
+h1, h2, h3 {
     font-weight: normal;
 }
 
+h2 {
+    margin-bottom: 10px;
+}
+
+h3 {
+    margin-top: 5px;
+    margin-bottom: 7px;
+}
+
+h4 {
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+.wrapper {
+    margin: 2em auto;
+    min-width: 760px;
+    width: 70%;
+}
+
 #menu {
+    overflow: hidden;
     margin: 0;
     padding: 0;
-    overflow: hidden;
 
     li {
-        list-style: none;
         float: left;
+        list-style: none;
     }
 
     a {
         display: block;
-        background-color: @lightGreen;
         padding: .5em 1.25em;
+        background-color: @lightGreen;
         .transition(background-color 250ms ease-out);
 
         &:hover,
@@ -60,17 +84,25 @@ h1,h2,h3,h4,h5,h6 {
     }
 }
 
-.wrapper {
-    width: 90%;
-    margin: 2em auto;
+#event-details {
+    overflow: hidden;
+
+    section {
+        float: left;
+        width: 35%;
+    }
+
+    aside {
+        margin-left: 40%;
+    }
 }
 
-.schedule {
+.events {
     width: 100%;
 
     .group-date {
-        background: darken(@lightGreen, 30%);
         padding: 10px;
+        background: darken(@lightGreen, 30%);
         font-size: 1.1em;
     }
 
@@ -83,13 +115,83 @@ h1,h2,h3,h4,h5,h6 {
     }
 }
 
+.meeting-meta {
+    dt {
+        display: block;
+        float: left;
+        width: 75px;
+        font-weight: bold;
+    }
+}
+
+.action-bar {
+    padding: 0;
+
+    li {
+        margin-right: 5px;
+        display: inline;
+    }
+}
+
+/*
+    Forms
+*/
+fieldset {
+    border: none;
+    padding: 0;
+
+    legend {
+        text-transform: uppercase;
+        border-bottom: 1px solid @lightGreen;
+        margin-bottom: 1em;
+    }
+
+    input[type='text'] {
+        max-width: 700px;
+        width: 50%;
+    }
+
+    textarea {
+        max-width: 700px;
+        width: 50%;
+        height: 15em;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input[type='text'],
+    textarea {
+        margin-bottom: 10px;
+        padding: 3px;
+    }
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+    display: inline-block;
+    margin-top: 1px;
+    width: 14px;
+    height: 14px;
+    background-repeat: no-repeat;
+    line-height: 14px;
+}
+
+.icon-attending {
+}
+
+.attending .icon-attending {
+    background-image: url('../img/star.png');
+}
+
 .col1,
 .col2,
 .col3,
 .col4 {
+    position: relative;
     float: left;
     overflow: hidden;
-    position: relative;
 }
 
 .col1 {
@@ -109,76 +211,48 @@ h1,h2,h3,h4,h5,h6 {
     float: right;
 }
 
+.list-plain {
+    margin: 0;
+    padding: 0;
+
+    li {
+        list-style: none;
+    }
+}
+
+.tabbed {
+    .list-plain;
+
+    li {
+        display: inline-block;
+    }
+
+    a {
+        display: block;
+        padding: 5px;
+    }
+}
+
 .hidden {
     display: none;
 }
 
-.meeting-meta {
-    dt {
-        font-weight: bold;
-        display: block;
-        float: left;
-        width: 75px;
-    }
-}
+.button {
+    &.minimal {
+        background: @lightGreen;
+        border: 1px solid #bbb;
+        border-radius: 3px;
+        box-shadow: inset 0 0 1px 1px lighten(@lightGreen,10%);
+        color: #333;
+        padding: 4px 10px 5px;
+        text-align: center;
+        text-shadow: 0 1px 0 #fff;
 
-.action-bar {
-    list-style: none;
-    padding: 0;
-
-    li {
-        display: inline;
-
-        &:before {
-            content: " | ";
-        }
-
-        &:first-child:before {
-            content: "";
+        &:hover {
+            background: darken(@lightGreen, 10%);
+            box-shadow: inset 0 0 1px 1px @lightGreen;
+            color: #222;
+            cursor: pointer;
         }
     }
-}
-
-/*
-    Forms
-*/
-fieldset {
-    input[type='text'] {
-        width: 50%;
-        max-width: 700px;
-    }
-
-    textarea {
-        width: 50%;
-        max-width: 700px;
-        height: 15em;
-    }
-
-    label {
-        font-weight: bold;
-    }
-
-    input[type='text'],
-    textarea {
-        margin-bottom: 10px;
-    }
-}
-
-[class^="icon-"], 
-[class*=" icon-"] 
-{
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    margin-top: 1px;
-    line-height: 14px;
-    background-repeat: no-repeat;
-}
-
-.icon-attending {
-
-}
-
-.attending .icon-attending {
-    background-image: url('../img/star.png');
 }
