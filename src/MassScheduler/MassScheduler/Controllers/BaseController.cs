@@ -3,9 +3,9 @@ using MassScheduler.Models;
 
 namespace MassScheduler.Controllers
 {
-    public class ControllerBase : Controller
+    public class BaseController : Controller
     {
-        protected MeetingContext db = new MeetingContext();
+        protected MeetingContext Db = new MeetingContext();
 
         protected UserInformation CurrentUser
         {

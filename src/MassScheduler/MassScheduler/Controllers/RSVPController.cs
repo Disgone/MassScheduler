@@ -5,11 +5,11 @@ using MassScheduler.Models;
 namespace MassScheduler.Controllers
 {
     [Authorize]
-    public class RSVPController : ControllerBase
+    public class RSVPController : BaseController
     {
         public ActionResult Register(int id)
         {
-            var meeting = db.Meetings.Find(id);
+            var meeting = Db.Meetings.Find(id);
 
             if (meeting == null)
             {
@@ -20,7 +20,7 @@ namespace MassScheduler.Controllers
             {
                 var reservation = new RSVP(CurrentUser.Username, CurrentUser.FullName, CurrentUser.EmailAddress);
                 meeting.RSVP.Add(reservation);
-                db.SaveChanges();
+                Db.SaveChanges();
             }
 
             return View(meeting);
@@ -28,13 +28,13 @@ namespace MassScheduler.Controllers
 
         public ActionResult Cancel(int id)
         {
-            var meeting = db.Meetings.Find(id);
+            var meeting = Db.Meetings.Find(id);
 
             var rsvp = meeting.RSVP.SingleOrDefault(x => x.AttendeeUsername == CurrentUser.Username);
             if (rsvp != null)
             {
-                db.RSVPs.Remove(rsvp);
-                db.SaveChanges();
+                Db.RSVPs.Remove(rsvp);
+                Db.SaveChanges();
             }
 
             return View(meeting);

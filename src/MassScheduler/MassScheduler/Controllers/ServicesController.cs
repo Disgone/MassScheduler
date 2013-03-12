@@ -8,13 +8,13 @@ using UrlHelper = MassScheduler.Helpers.UrlHelper;
 
 namespace MassScheduler.Controllers
 {
-    public class ServicesController : ControllerBase
+    public class ServicesController : BaseController
     {
         [AllowAnonymous]
         [OutputCache(VaryByParam = "none", Duration = 300)]
         public ActionResult RSS()
         {
-            var meetings = db.Meetings.Where(x => x.EndDate > DateTime.UtcNow);
+            var meetings = Db.Meetings.Where(x => x.EndDate > DateTime.UtcNow);
 
             if (!meetings.Any())
             {
@@ -27,7 +27,7 @@ namespace MassScheduler.Controllers
         [AllowAnonymous]
         public ActionResult iCal(int id)
         {
-            var meeting = db.Meetings.Find(id);
+            var meeting = Db.Meetings.Find(id);
 
             if (meeting == null)
             {
@@ -43,7 +43,7 @@ namespace MassScheduler.Controllers
         [OutputCache(VaryByParam = "none", Duration = 300)]
         public ActionResult iCalFeed()
         {
-            var meetings = db.Meetings.Where(x => x.EndDate > DateTime.UtcNow);
+            var meetings = Db.Meetings.Where(x => x.EndDate > DateTime.UtcNow);
 
             if (!meetings.Any())
             {

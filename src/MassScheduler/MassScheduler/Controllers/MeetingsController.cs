@@ -6,12 +6,12 @@ using MassScheduler.Models;
 namespace MassScheduler.Controllers
 {
     [Authorize]
-    public class MeetingsController : ControllerBase
+    public class MeetingsController : BaseController
     {
 
         public ActionResult Index()
         {
-            var meetings = db.Meetings
+            var meetings = Db.Meetings
                              .Where(x => x.EndDate >= DateTime.UtcNow)
                              .OrderBy(x => x.StartDate);
 
@@ -21,7 +21,7 @@ namespace MassScheduler.Controllers
 
         public ActionResult Details(int id)
         {
-            var meeting = db.Meetings.Find(id);
+            var meeting = Db.Meetings.Find(id);
 
             if (meeting == null)
             {
@@ -63,8 +63,8 @@ namespace MassScheduler.Controllers
                 meeting.StartDate = TimeZone.CurrentTimeZone.ToUniversalTime(meeting.StartDate);
                 meeting.EndDate = TimeZone.CurrentTimeZone.ToUniversalTime(meeting.EndDate);
 
-                db.Meetings.Add(meeting);
-                db.SaveChanges();
+                Db.Meetings.Add(meeting);
+                Db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
@@ -74,7 +74,7 @@ namespace MassScheduler.Controllers
 
         public ActionResult Edit(int id)
         {
-            var meeting = db.Meetings.Find(id);
+            var meeting = Db.Meetings.Find(id);
 
             if (meeting == null)
             {
@@ -95,7 +95,7 @@ namespace MassScheduler.Controllers
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
-            Meeting meeting = db.Meetings.Find(id);
+            Meeting meeting = Db.Meetings.Find(id);
 
             if (meeting == null)
             {
@@ -114,7 +114,7 @@ namespace MassScheduler.Controllers
                 meeting.EndDate = TimeZone.CurrentTimeZone.ToUniversalTime(meeting.EndDate);
                 meeting.Modified = DateTime.UtcNow;
 
-                db.SaveChanges();
+                Db.SaveChanges();
 
                 return RedirectToAction("details", new {id = meeting.Id});
             }
@@ -126,7 +126,7 @@ namespace MassScheduler.Controllers
 
         public ActionResult Delete(int id)
         {
-            var meeting = db.Meetings.Find(id);
+            var meeting = Db.Meetings.Find(id);
 
             if (meeting == null)
             {
@@ -140,7 +140,7 @@ namespace MassScheduler.Controllers
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
-            var meeting = db.Meetings.Find(id);
+            var meeting = Db.Meetings.Find(id);
 
             if (meeting == null)
             {
@@ -150,11 +150,11 @@ namespace MassScheduler.Controllers
             var rsvps = meeting.RSVP.ToList();
             foreach (var rsvp in rsvps)
             {
-                db.RSVPs.Remove(rsvp);
+                Db.RSVPs.Remove(rsvp);
             }
-            db.Meetings.Remove(meeting);
+            Db.Meetings.Remove(meeting);
 
-            db.SaveChanges();
+            Db.SaveChanges();
 
             return RedirectToAction("index");
         }
