@@ -12,6 +12,12 @@ namespace MassScheduler.Models
         [StringLength(125, ErrorMessage = "Speaker name may not be longer than 125 characters.")]
         public string Name { get; set; }
 
+        [StringLength(125, ErrorMessage = "Title may not be longer than 125 characters.")]
+        public string Title { get; set; }
+
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
+
         [StringLength(125, ErrorMessage = "Organization may not be longer than 125 characters.")]
         public string Organization { get; set; }
 
