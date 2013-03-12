@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Security.Policy;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Mvc;
@@ -9,7 +8,7 @@ namespace MassScheduler.Helpers
 {
     public static class HtmlHelperExtensions
     {
-        public static IHtmlString UploadedImage(this HtmlHelper helper, string fileName, object htmlAttributes)
+        public static IHtmlString UploadedImage(this HtmlHelper helper, string fileName, object htmlAttributes = null)
         {
             var uploadDirectory = WebConfigurationManager.AppSettings["UploadDirectory"];
             var uploadPath = Path.Combine(uploadDirectory, fileName);
