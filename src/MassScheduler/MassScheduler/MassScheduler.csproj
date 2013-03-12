@@ -326,6 +326,7 @@
     <Content Include="Views\RSVP\Cancel.cshtml" />
     <Content Include="Views\Meetings\Delete.cshtml" />
     <Content Include="Views\Services\NoMeetings.cshtml" />
+    <Content Include="Views\Meetings\_MeetingFields.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
