@@ -15,7 +15,7 @@ namespace MassScheduler.Helpers
             evt.Location = meeting.Location;
             evt.Summary = meeting.Title;
             evt.Url = new Uri(eventLink);
-            evt.Description = String.Format("{0} Presented by: {1}", meeting.Descritpion, meeting.Speaker);
+            evt.Description = String.Format("{0} Presented by: {1}", meeting.Descritpion, meeting.Sponsor);
             return evt;
         }
     }

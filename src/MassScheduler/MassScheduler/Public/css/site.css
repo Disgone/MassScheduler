@@ -483,6 +483,9 @@ fieldset textarea {
   margin-bottom: 10px;
   padding: 3px;
 }
+fieldset .form-controls {
+  margin-top: 1em;
+}
 [class^="icon-"],
 [class*=" icon-"] {
   display: inline-block;

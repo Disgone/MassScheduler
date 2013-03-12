@@ -28,8 +28,8 @@ namespace MassScheduler.Models
         [DateIsBefore("StartDate", "End date must be after start date.")]
         public DateTime EndDate { get; set; }
 
-        [Display(Name = "Speaker(s)")]
-        public string Speaker { get; set; }
+        [StringLength(125, ErrorMessage = "Sponsor name may not be longer than 125 characters.")]
+        public string Sponsor { get; set; }
 
         [Required(ErrorMessage = "Location is required.")]
         [StringLength(256, ErrorMessage = "Location may not be longer than 256 characters.")]
@@ -49,6 +49,9 @@ namespace MassScheduler.Models
         public DateTime Modified { get; set; }
 
         public virtual ICollection<RSVP> RSVP { get; set; }
+
+        [Display(Name = "Speaker(s)")]
+        public virtual ICollection<Speaker> Speakers { get; set; } 
 
         public bool IsUserAttending(string username)
         {

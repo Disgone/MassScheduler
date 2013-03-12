@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using MassScheduler.Models;
@@ -45,8 +46,15 @@ namespace MassScheduler.Controllers
                 EndDate = date.AddHours(1),
                 Created = DateTime.UtcNow,
                 Modified = DateTime.UtcNow,
-                Contact = CurrentUser.EmailAddress
+                Contact = CurrentUser.EmailAddress,
+                Speakers = new List<Speaker>()
             };
+
+            ViewBag.Speakers =
+                Db.Speakers
+                  .ToList()
+                  .OrderBy(x => x.Name)
+                  .Select(x => new SelectListItem() {Selected = false, Text = x.Name, Value = x.Id.ToString()});
 
             return View(meeting);
         }

@@ -33,11 +33,11 @@
 </div>
 
 <div class="editor-label">
-    @Html.LabelFor(model => model.Speaker)
+    @Html.LabelFor(model => model.Sponsor)
 </div>
 <div class="editor-field">
-    @Html.EditorFor(model => model.Speaker)
-    @Html.ValidationMessageFor(model => model.Speaker)
+    @Html.EditorFor(model => model.Sponsor)
+    @Html.ValidationMessageFor(model => model.Sponsor)
 </div>
 
 <div class="editor-label">
@@ -54,4 +54,11 @@
 <div class="editor-field">
     @Html.EditorFor(model => model.Contact)
     @Html.ValidationMessageFor(model => model.Contact)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Speakers)
+</div>
+<div class="editor-field">
+    @Html.DropDownList("Speakers", (IEnumerable<SelectListItem>)ViewBag.Speakers, new { multiple = true })
 </div>

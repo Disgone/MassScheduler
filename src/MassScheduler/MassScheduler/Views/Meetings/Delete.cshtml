@@ -12,7 +12,7 @@
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
-        <p>
+        <p class="form-controls">
             <input type="submit" value="Delete" /> |
             @Html.ActionLink("Back to List", "Index")
         </p>

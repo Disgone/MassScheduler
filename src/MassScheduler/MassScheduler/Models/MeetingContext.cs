@@ -6,5 +6,6 @@ namespace MassScheduler.Models
     {
         public IDbSet<Meeting> Meetings { get; set; }
         public IDbSet<RSVP> RSVPs { get; set; }
+        public IDbSet<Speaker> Speakers { get; set; } 
     }
 }

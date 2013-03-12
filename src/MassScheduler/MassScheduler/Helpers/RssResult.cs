@@ -35,8 +35,8 @@ namespace MassScheduler.Helpers
 
             foreach (Meeting d in Meetings)
             {
-                var contentString = String.Format("{0} with {1} on {2:MMM dd, yyyy} at {3}. Where: {4}",
-                            d.Title, d.Speaker, d.StartDate, d.StartDate.ToLocalTime().ToShortTimeString(), d.Location);
+                var contentString = String.Format("{0} by {1} on {2:MMM dd, yyyy} at {3}. Where: {4}",
+                            d.Title, d.Sponsor, d.StartDate, d.StartDate.ToLocalTime().ToShortTimeString(), d.Location);
 
                 var item = new SyndicationItem(
                     d.Title, 
