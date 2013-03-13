@@ -53,9 +53,12 @@
                         </p>
                         <ul class='action-bar'>
                             <li>@Html.ActionLink("View more details", "details", new {id = item.Id})</li>
-                            <li>@Html.ActionLink("RSVP!", "register", "rsvp", new {id = item.Id}, new {@class = "rsvp-button button", title = "RSVP to this Event"})</li>
-                            <li>@Html.ActionLink("Cancel my RSVP", "cancel", "rsvp", new {id = item.Id}, new {@class = "cancel-rsvp-button button", title = "Cancel my RSVP"})</li>
-                            <li>@Html.ActionLink("Add to my Calendar", "ical", "services", new {id = item.Id}, new {@class = "download-button button", title = "Add to Calendar"})</li>
+                            @if (!item.IsOver())
+                            {
+                                <li>@Html.ActionLink("RSVP!", "register", "rsvp", new {id = item.Id}, new {@class = "rsvp-button button", title = "RSVP to this Event"})</li>
+                                <li>@Html.ActionLink("Cancel my RSVP", "cancel", "rsvp", new {id = item.Id}, new {@class = "cancel-rsvp-button button", title = "Cancel my RSVP"})</li>
+                                <li>@Html.ActionLink("Add to my Calendar", "ical", "services", new {id = item.Id}, new {@class = "download-button button", title = "Add to Calendar"})</li>
+                            }
                         </ul>
                     </div>
                 </div>

@@ -34,6 +34,11 @@ namespace MassScheduler.Controllers
                 return HttpNotFound();
             }
 
+            if (meeting.IsOver())
+            {
+                return Content("Sorry, but that meeting has ended.")
+            }
+
             var safeTitle = UrlHelper.ResolveTextToUrl(meeting.Title) + ".ics";
 
             return new iCalResult(meeting, safeTitle);
