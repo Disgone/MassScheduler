@@ -60,5 +60,5 @@
     @Html.LabelFor(model => model.Speakers)
 </div>
 <div class="editor-field">
-    @Html.DropDownList("Presenters", (IEnumerable<SelectListItem>)ViewBag.Presenters, new { multiple = true })
+    @Html.DropDownList("Presenters", (IEnumerable<SelectListItem>)ViewBag.SpeakerList, new { multiple = true })
 </div>

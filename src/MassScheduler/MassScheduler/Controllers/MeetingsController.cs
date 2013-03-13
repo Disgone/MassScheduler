@@ -51,7 +51,7 @@ namespace MassScheduler.Controllers
                 Speakers = new List<Speaker>()
             };
 
-            ViewBag.Presenters = GetSpeakerList();
+            ViewBag.SpeakerList = GetSpeakerList();
 
             return View(meeting);
         }
@@ -80,7 +80,7 @@ namespace MassScheduler.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Presenters = GetSpeakerList();
+            ViewBag.SpeakerList = GetSpeakerList();
 
             return View(meeting);
         }
@@ -103,7 +103,7 @@ namespace MassScheduler.Controllers
             meeting.StartDate = TimeZone.CurrentTimeZone.ToLocalTime(meeting.StartDate);
             meeting.EndDate = TimeZone.CurrentTimeZone.ToLocalTime(meeting.EndDate);
 
-            ViewBag.Presenters = GetSpeakerList(meeting.Speakers);
+            ViewBag.SpeakerList = GetSpeakerList(meeting.Speakers);
 
             return View(meeting);
         }
@@ -143,7 +143,7 @@ namespace MassScheduler.Controllers
             }
             catch
             {
-                ViewBag.Presenters = GetSpeakerList(meeting.Speakers);
+                ViewBag.SpeakerList = GetSpeakerList(meeting.Speakers);
                 return View(meeting);
             }
         }
