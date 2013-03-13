@@ -29,9 +29,6 @@ namespace MassScheduler.Controllers
                 return HttpNotFound();
             }
 
-            meeting.StartDate = TimeZone.CurrentTimeZone.ToLocalTime(meeting.StartDate);
-            meeting.EndDate = TimeZone.CurrentTimeZone.ToLocalTime(meeting.EndDate);
-
             ViewBag.CurrentUser = CurrentUser;
             return View(meeting);
         }

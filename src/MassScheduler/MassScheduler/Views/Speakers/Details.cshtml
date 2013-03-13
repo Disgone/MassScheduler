@@ -4,50 +4,65 @@
     ViewBag.Title = Model.Name;
 }
 
-<div class="page">
-    <header>
-        <span class="heading">
-            @Html.ActionLink("Speakers", "index", "speakers")
-        </span>
-    </header>
-    <section>
-        <article class="speaker details focus">
+
+<header>
+    
+</header>
+<section class="group">
+    <article class="speaker details focus">
+        <div class="page">
+            <span class="heading">
+                @Html.ActionLink("Speakers", "index", "speakers")
+            </span>
             <header>
                 <h1>@Model.Name</h1>
-                @if (User.IsInRole(@"hks-a\GreenweekAdmin"))
-                {
-                    <nav>
-                        <ul class='action-bar'>
-                            <li>@Html.ActionLink("Edit", "edit", "speakers", new { id = Model.Id }, null)</li>
-                            <li>@Html.ActionLink("Delete", "delete", "speakers", new { id = Model.Id }, null)</li>
-                        </ul>
-                    </nav>
-                }
             </header>
-            <section class="bio-image">
-                @Html.UploadedImage(Model.Photo)
-            </section>
-            <aside>
-                @if (!String.IsNullOrEmpty(Model.Email))
-                {
-                    @Html.MailTo(Model.Email, Model.Email)<br/>
-                }
 
-                @if (!String.IsNullOrEmpty(Model.Title))
-                {
-                    @Model.Title<br/>
-                }
+            <aside class="group">
+                <section class="bio-image secondary">
+                    @Html.UploadedImage(Model.Photo)
+                </section>
+                <section class="bio-info focus">
+                    @if (!String.IsNullOrEmpty(Model.Email))
+                    {
+                        @Html.MailTo(Model.Email, Model.Email)<br/>
+                    }
 
-                @if (!String.IsNullOrEmpty(Model.Organization))
-                {
-                    @Model.Organization
-                }
+                    @if (!String.IsNullOrEmpty(Model.Title))
+                    {
+                        @Model.Title<br/>
+                    }
+
+                    @if (!String.IsNullOrEmpty(Model.Organization))
+                    {
+                        @Model.Organization
+                    }
+                </section>
             </aside>
+            <article>
+                @Html.Markdown(Model.Bio)
+            </article>
 
-            @Html.Markdown(Model.Bio)
-        </article>
-        <aside class="secondary">
-            @Html.Action("SpeakerList", new { id = Model.Id })
-        </aside>
-    </section>
-</div>
+            <h2 class="underlined">Events you can see this speaker:</h2>
+            <ul>
+                @foreach (var m in Model.Meetings)
+                {
+                    <li>@Html.ActionLink(m.Title, "details", "meetings", new { id = m.Id }, null)</li>
+                }
+            </ul>
+            
+            @if (User.IsInRole(@"hks-a\GreenweekAdmin"))
+            {
+                <nav>
+                    <ul class='action-bar'>
+                        <li>@Html.ActionLink("Edit", "edit", "speakers", new { id = Model.Id }, null)</li>
+                        <li>@Html.ActionLink("Delete", "delete", "speakers", new { id = Model.Id }, null)</li>
+                    </ul>
+                </nav>
+            }
+        </div>
+    </article>
+    <aside class="secondary">
+        @Html.Action("SpeakerList", new { id = Model.Id })
+    </aside>
+</section>

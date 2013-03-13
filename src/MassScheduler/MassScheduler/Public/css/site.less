@@ -2,6 +2,7 @@
 @import 'normalize';
 
 body {
+    background: url('../img/diagonal_waves.png');
     color: @fontColor;
     font-size: @fontSize;
     font-family: @fontFamily;
@@ -33,9 +34,14 @@ table {
     }
 }
 
-p {
-    margin: 0 0 1.5em;
+hr {
+    clear: both;
+    margin: 20px 0;
+    border: 0;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #ffffff;
 }
+
 
 h1, h2, h3 {
     font-weight: normal;
@@ -55,6 +61,16 @@ h4 {
     margin-bottom: 0px;
 }
 
+img {
+    max-width: 100%;
+}
+
+.block-strip(@color) {
+    position: relative;
+    padding: .5em 1em;
+    background-color: @color;
+}
+
 .wrapper {
     margin: 2em auto;
     min-width: 760px;
@@ -62,7 +78,35 @@ h4 {
 }
 
 .page {
+    position: relative;
+    padding: 2rem;
     background-color: #FFF;
+
+    header {
+        h1 {
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+    }
+}
+
+.heading {
+    position: relative;
+    margin-left: -3.5em;
+    margin-bottom: 2em;
+    top: -.85em;
+
+    a {
+        .block-strip(@green);
+        display: inline-block;
+        color: #FFF;
+        .transition(e('color 150ms ease-in, background-color 150ms ease-out'));
+
+        &:hover,
+        &:focus {
+            background-color: darken(@green,10%);
+        }
+    }
 }
 
 #menu {
@@ -73,6 +117,9 @@ h4 {
     li {
         float: left;
         list-style: none;
+        margin-right: 2px;
+        border: 1px solid darken(@lightGreen, 10%);
+        border-width: 1px 1px 0;
     }
 
     a {
@@ -107,11 +154,15 @@ h4 {
 }
 
 .meeting-meta {
+    dl {
+        margin: 0 10px 0 0;
+    }
+
     dt {
         display: block;
         float: left;
-        width: 85px;
         margin-right: 5px;
+        width: 85px;
         text-align: right;
         font-weight: bold;
     }
@@ -121,12 +172,42 @@ h4 {
     }
 }
 
+.panels {
+    overflow: hidden;
+
+    .item {
+        float: left;
+        width: 24%;
+        margin-right: 1%;
+        position: relative;
+        text-align: center;
+        max-width: 200px;
+        max-height: 200px;
+    }
+}
+
+.speakers {
+    .speaker {
+        h2 {
+            margin: 0;
+            padding: 2px 5px;
+            font-size: 1.25em;
+            background-color: @lightGreen;
+            background-color: rgba(222, 225, 205, .9);
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+    }
+}
+    
+
 .action-bar {
     padding: 0;
 
     li {
-        margin-right: 5px;
         display: inline;
+        margin-right: 5px;
     }
 }
 
@@ -134,13 +215,13 @@ h4 {
     Forms
 */
 fieldset {
-    border: none;
     padding: 0;
+    border: none;
 
     legend {
-        text-transform: uppercase;
-        border-bottom: 1px solid @lightGreen;
         margin-bottom: 1em;
+        border-bottom: 1px solid @lightGreen;
+        text-transform: uppercase;
     }
 
     input[type='text'],
@@ -250,14 +331,13 @@ fieldset {
 
 .button {
     @bg: #F0F0F0;
-
-    background-color: @bg;
-    color: @fontColor;
     display: inline-block;
-    border: 1px solid darken(@bg, 10%);
-    box-shadow: inset 0 0 1px 1px lighten(@bg,3%);
-    border-radius: 3px;
     padding: 4px 10px 5px;
+    border: 1px solid darken(@bg, 10%);
+    border-radius: 3px;
+    background-color: @bg;
+    box-shadow: inset 0 0 1px 1px lighten(@bg,3%);
+    color: @fontColor;
     text-align: center;
     text-shadow: 0 1px 0 lighten(@bg, 10%);
     .transition(all 150ms ease-in);
@@ -270,8 +350,8 @@ fieldset {
     }
 
     &:active {
-        background-color: darken(@bg, 5%);
         border-color: darken(@bg, 10%);
+        background-color: darken(@bg, 5%);
         box-shadow: inset 1px 0 2px 2px darken(@bg,15%);
     }
 
@@ -282,16 +362,15 @@ fieldset {
     &.positive {
         @bg: @green;
         @text: #FFF;
-
-        background-color: @bg;
-        color: @text;
         border-color: darken(@bg, 10%);
+        background-color: @bg;
         box-shadow: inset 0 0 1px 1px lighten(@bg,3%);
+        color: @text;
         text-shadow: 0 1px 0 darken(@bg, 50%);
 
         &:hover {
-             background-color: darken(@bg, 5%);
-             box-shadow: inset 0 0 1px 1px darken(@bg,8%);
+            background-color: darken(@bg, 5%);
+            box-shadow: inset 0 0 1px 1px darken(@bg,8%);
         }
 
         &:active {
@@ -301,10 +380,10 @@ fieldset {
 
     &.destructive {
         @bg: #b70727;
-        background-color: @bg;
-        color: #FFF;
         border-color: darken(@bg, 10%);
+        background-color: @bg;
         box-shadow: inset 0 0 1px 1px lighten(@bg,3%);
+        color: #FFF;
         text-shadow: 0 1px 0 darken(@bg, 50%);
 
         &:hover {
@@ -315,6 +394,16 @@ fieldset {
 }
 
 .group {
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+
     .focus {
         position: relative;
         float: left;
@@ -329,35 +418,52 @@ fieldset {
 }
 
 .menu {
+    padding-left: 0;
+
     li {
         margin: 0;
         padding: 0;
-        list-style: none;
         width: 100%;
+        list-style: none;
+
+        &:first-child {
+            .menu-item {
+                border-top: 1px solid darken(@lightGreen,10%);
+            }
+        }
     }
 
     .menu-item {
-        display: block;
         position: relative;
+        display: block;
         padding: .5em 1em;
+        border-bottom: 1px solid darken(@lightGreen,10%);
+        background-color: @lightGreen;
+        .block-strip(@lightGreen);
     }
 
     b.menu-item {
+        background-color: @green;
         font-weight: normal;
-        background-color: @lightGreen;
 
         &:after {
             position: absolute;
-            border: solid transparent;
-            right: 100%;
             top: 50%;
-            height: 0;
-            width: 0;
-            content: " ";
-            border-style: solid;
-            border-width: 1rem;
-            border-right-color: @lightGreen;
+            right: 100%;
             margin-top: -1rem;
+            width: 0;
+            height: 0;
+            border: solid transparent;
+            border-width: 1rem;
+            border-style: solid;
+            border-right-color: @green;
+            content: " ";
+        }
+    }
+
+    &.right {
+        .menu-item {
+            border-right: 1px solid darken(@lightGreen,10%);
         }
     }
 }

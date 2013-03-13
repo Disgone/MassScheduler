@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8" />
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>HKS Greenweek 2013 @ViewBag.Title</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
@@ -12,17 +13,15 @@
     </head>
     <body>
         <div class="wrapper">
-            <aside id="sidebar">
-                <header role="banner">
-                    <h1>@Html.RouteLink("HKS Greenweek 2013", "Default")</h1>
-                </header>
+            <header id="page-hdr" role="banner">
+                <h1>@Html.RouteLink("HKS Greenweek 2013", "Default")</h1>
                 <nav>
                     <ul id="menu" role="navigation">
                         <li>@Html.ActionLink("Schedule", "index", "Meetings")</li>
                         <li>@Html.ActionLink("Speakers", "index", "Speakers")</li>
                     </ul>
                 </nav>
-            </aside>
+            </header>
             <section class="content" role="main">
                 @RenderBody()
             </section>

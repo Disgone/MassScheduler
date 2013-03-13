@@ -4,7 +4,19 @@
     ViewBag.Title = "Registration Confirmation";
 }
 
-<h1>Your spot has been reserved!</h1>
-<p>
-    Thanks!  We'll see you at @Model.Title.
-</p>
+<header>
+    <span class="heading">
+        @Html.ActionLink("Events", "index", "meetings")
+    </span>
+</header>
+<div class="page">
+    <header>
+        <h1>You've successfully RSVP'd to "@Model.Title"!</h1>
+    </header>
+    <p>
+        Thanks!  We'll see you there.
+    </p>
+    <p>
+        @Html.ActionLink("Add event to Calendar", "ical", "services", new { id = Model.Id }, null)
+    </p>
+</div>

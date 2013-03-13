@@ -58,6 +58,6 @@
 
   window.Schedule = Schedule;
 
-  window.Schedule('.schedule');
+  window.Schedule('.events');
 
 }).call(this);

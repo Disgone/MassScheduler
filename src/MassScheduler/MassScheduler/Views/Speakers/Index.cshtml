@@ -5,20 +5,20 @@
 }
 
 <div class="page">
-    <header>
-        <span class="heading">
-            @Html.ActionLink("Speakers", "index", "speakers")
-        </span>
-        @if (User.IsInRole(@"hks-a\GreenweekAdmin"))
-        {
-            <nav>
-                <ul class='action-bar'>
-                    <li>@Html.ActionLink("New Speaker", "create", "speakers")</li>
-                </ul>
-            </nav>
-        }
-    </header>
+    <span class="heading">
+        @Html.ActionLink("Speakers", "index", "speakers")
+    </span>
     <section class="speakers panels">
+        <header>
+            @if (User.IsInRole(@"hks-a\GreenweekAdmin"))
+            {
+                <nav>
+                    <ul class='action-bar'>
+                        <li>@Html.ActionLink("New Speaker", "create", "speakers")</li>
+                    </ul>
+                </nav>
+            }
+        </header>
         @foreach (var item in Model)
         {
             <div class="item speaker">

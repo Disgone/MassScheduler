@@ -4,5 +4,14 @@
     ViewBag.Title = "Cancellation Confirmed";
 }
 
-<h1>Your cancellation was received.</h1>
-<p>Sorry you won't be able to make it.</p>
+<header>
+    <span class="heading">
+        @Html.ActionLink("Events", "index", "meetings")
+    </span>
+</header>
+<div class="page">
+    <header>
+        <h1>We're cancelled your RSVP to "@Model.Title"</h1>
+    </header>
+    <p>Sorry you won't be able to make it!</p>
+</div>

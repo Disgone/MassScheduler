@@ -34,9 +34,9 @@ namespace MassScheduler.Controllers
                 return HttpNotFound();
             }
 
-            if (meeting.IsOver())
+            if (meeting.HasEnded())
             {
-                return Content("Sorry, but that meeting has ended.")
+                return Content("Sorry, but that meeting has ended.");
             }
 
             var safeTitle = UrlHelper.ResolveTextToUrl(meeting.Title) + ".ics";

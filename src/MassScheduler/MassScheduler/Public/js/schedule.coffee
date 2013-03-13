@@ -61,4 +61,4 @@
     return
     
 window.Schedule = Schedule
-window.Schedule('.schedule')
+window.Schedule('.events')

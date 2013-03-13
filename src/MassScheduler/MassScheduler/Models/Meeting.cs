@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web.Mvc;
 using MassScheduler.Validation;
@@ -54,6 +55,18 @@ namespace MassScheduler.Models
         [Display(Name = "Speaker(s)")]
         public virtual ICollection<Speaker> Speakers { get; set; }
 
+        [NotMapped]
+        public DateTime LocalStartDate
+        {
+            get { return StartDate.ToLocalTime(); }
+        }
+
+        [NotMapped]
+        public DateTime LocalEndDate
+        {
+            get { return EndDate.ToLocalTime(); }
+        }
+
         public Meeting()
         {
             Created = DateTime.UtcNow;
@@ -82,9 +95,9 @@ namespace MassScheduler.Models
             Speakers = speakers.ToList();
         }
 
-        public bool IsOver()
+        public bool HasEnded()
         {
-            return EndDate <= DateTime.UtcNow;
+            return DateTime.UtcNow >= EndDate;
         }
     }
 }
