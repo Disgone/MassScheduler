@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MassScheduler", "MassScheduler\MassScheduler.csproj", "{66C8A670-C554-49CE-A944-6A53A747C8AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MassScheduler.Tests", "MassScheduler.Tests\MassScheduler.Tests.csproj", "{BE9D7203-DA30-4579-9D47-4A93A4B186E4}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6C423675-7BC5-4997-84AE-140451172B15}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -22,10 +20,6 @@ Global
 		{66C8A670-C554-49CE-A944-6A53A747C8AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66C8A670-C554-49CE-A944-6A53A747C8AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66C8A670-C554-49CE-A944-6A53A747C8AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BE9D7203-DA30-4579-9D47-4A93A4B186E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE9D7203-DA30-4579-9D47-4A93A4B186E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE9D7203-DA30-4579-9D47-4A93A4B186E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BE9D7203-DA30-4579-9D47-4A93A4B186E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
