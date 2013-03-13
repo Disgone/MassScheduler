@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
@@ -72,8 +73,18 @@ namespace MassScheduler.Models
 
         public void UpdateSpeakers(IEnumerable<Speaker> speakers)
         {
+            if (Speakers == null)
+            {
+                Speakers = new Collection<Speaker>();
+            }
+
             Speakers.Clear();
             Speakers = speakers.ToList();
+        }
+
+        public bool IsOver()
+        {
+            return EndDate >= DateTime.UtcNow;
         }
     }
 }
