@@ -4,7 +4,14 @@
     @foreach (var item in Model)
     {
         <li>
-            @Html.ActionLink(item.Name, "details", "speakers", new { id = item.Id }, new { @class = (ViewBag.CurrentSpeaker == item.Id ? "active" : null) })
+            @if (ViewBag.CurrentSpeaker == item.Id)
+            {
+                <b class="menu-item">@item.Name</b>
+            }
+            else
+            {
+                @Html.ActionLink(item.Name, "details", "speakers", new {id = item.Id}, new {@class = "menu-item"})
+            }
         </li>
     }
 </ul> 

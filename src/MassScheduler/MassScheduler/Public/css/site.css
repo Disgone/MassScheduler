@@ -547,19 +547,98 @@ fieldset .form-controls {
 .hidden {
   display: none;
 }
-.button.minimal {
-  background: #dee1cd;
-  border: 1px solid #bbb;
+.underlined {
+  border-bottom: 1px solid #88a02f;
+}
+.button {
+  background-color: #f0f0f0;
+  color: #333333;
+  display: inline-block;
+  border: 1px solid #d7d7d7;
+  box-shadow: inset 0 0 1px 1px #f8f8f8;
   border-radius: 3px;
-  box-shadow: inset 0 0 1px 1px #f3f4ed;
-  color: #333;
   padding: 4px 10px 5px;
   text-align: center;
-  text-shadow: 0 1px 0 #fff;
+  text-shadow: 0 1px 0 #ffffff;
+  -webkit-transition: all 150ms ease-in;
+  -moz-transition: all 150ms ease-in;
+  -o-transition: all 150ms ease-in;
+  transition: all 150ms ease-in;
 }
-.button.minimal:hover {
-  background: #c9cead;
-  box-shadow: inset 0 0 1px 1px #dee1cd;
-  color: #222;
+.button:hover {
+  background-color: #e3e3e3;
+  box-shadow: inset 0 0 1px 1px #dcdcdc;
+  color: #262626;
   cursor: pointer;
+}
+.button:active {
+  background-color: #e3e3e3;
+  border-color: #d7d7d7;
+  box-shadow: inset 1px 0 2px 2px #cacaca;
+}
+.button.minimal {
+  padding: 2px 5px 2px;
+}
+.button.positive {
+  background-color: #88a02f;
+  color: #ffffff;
+  border-color: #667923;
+  box-shadow: inset 0 0 1px 1px #92ac32;
+  text-shadow: 0 1px 0 #000000;
+}
+.button.positive:hover {
+  background-color: #778c29;
+  box-shadow: inset 0 0 1px 1px #6d8026;
+}
+.button.positive:active {
+  box-shadow: inset 0 0 2px 2px #6d8026;
+}
+.button.destructive {
+  background-color: #b70727;
+  color: #FFF;
+  border-color: #86051d;
+  box-shadow: inset 0 0 1px 1px #c6082a;
+  text-shadow: 0 1px 0 #000000;
+}
+.button.destructive:hover {
+  background-color: #9e0622;
+  box-shadow: inset 0 0 1px 1px #90051f;
+}
+.group .focus {
+  position: relative;
+  float: left;
+  width: 75%;
+}
+.group .secondary {
+  position: relative;
+  float: left;
+  width: 25%;
+}
+.menu li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+.menu .menu-item {
+  display: block;
+  position: relative;
+  padding: .5em 1em;
+}
+.menu b.menu-item {
+  font-weight: normal;
+  background-color: #dee1cd;
+}
+.menu b.menu-item:after {
+  position: absolute;
+  border: solid transparent;
+  right: 100%;
+  top: 50%;
+  height: 0;
+  width: 0;
+  content: " ";
+  border-style: solid;
+  border-width: 1rem;
+  border-right-color: #dee1cd;
+  margin-top: -1rem;
 }
