@@ -84,7 +84,7 @@ namespace MassScheduler.Models
 
         public bool IsOver()
         {
-            return EndDate >= DateTime.UtcNow;
+            return EndDate <= DateTime.UtcNow;
         }
     }
 }
