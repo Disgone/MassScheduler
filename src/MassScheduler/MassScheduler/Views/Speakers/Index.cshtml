@@ -5,10 +5,20 @@
 }
 
 <div class="page">
-    <hgroup>
-        <h1>@Html.ActionLink("Speakers", "index", "speakers")</h1>
-    </hgroup>
-    <div class="speakers panels">
+    <header>
+        <span class="heading">
+            @Html.ActionLink("Speakers", "index", "speakers")
+        </span>
+        @if (User.IsInRole(@"hks-a\GreenweekAdmin"))
+        {
+            <nav>
+                <ul class='action-bar'>
+                    <li>@Html.ActionLink("New Speaker", "create", "speakers")</li>
+                </ul>
+            </nav>
+        }
+    </header>
+    <section class="speakers panels">
         @foreach (var item in Model)
         {
             <div class="item speaker">
@@ -18,5 +28,5 @@
                 </a>
             </div>
         }
-    </div>
+    </section>
 </div>

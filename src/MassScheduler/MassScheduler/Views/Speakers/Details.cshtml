@@ -4,18 +4,50 @@
     ViewBag.Title = Model.Name;
 }
 
-<hgroup>
-    <h1>@Html.ActionLink("Speakers", "index", "speakers")</h1>
-</hgroup>
-<div class="split-view">
-    <article class="speaker details">
-        <hgroup>
-            <h1>@Model.Name</h1>
-            @Html.UploadedImage(Model.Photo)
-        </hgroup>
-        @Html.Markdown(Model.Bio)
-    </article>
-    <aside>
-        
-    </aside>
+<div class="page">
+    <header>
+        <span class="heading">
+            @Html.ActionLink("Speakers", "index", "speakers")
+        </span>
+    </header>
+    <section>
+        <article class="speaker details focus">
+            <header>
+                <h1>@Model.Name</h1>
+                @if (User.IsInRole(@"hks-a\GreenweekAdmin"))
+                {
+                    <nav>
+                        <ul class='action-bar'>
+                            <li>@Html.ActionLink("Edit", "edit", "speakers", new { id = Model.Id }, null)</li>
+                            <li>@Html.ActionLink("Delete", "delete", "speakers", new { id = Model.Id }, null)</li>
+                        </ul>
+                    </nav>
+                }
+            </header>
+            <section class="bio-image">
+                @Html.UploadedImage(Model.Photo)
+            </section>
+            <aside>
+                @if (!String.IsNullOrEmpty(Model.Email))
+                {
+                    @Html.MailTo(Model.Email, Model.Email)<br/>
+                }
+
+                @if (!String.IsNullOrEmpty(Model.Title))
+                {
+                    @Model.Title<br/>
+                }
+
+                @if (!String.IsNullOrEmpty(Model.Organization))
+                {
+                    @Model.Organization
+                }
+            </aside>
+
+            @Html.Markdown(Model.Bio)
+        </article>
+        <aside class="secondary">
+            @Html.Action("SpeakerList", new { id = Model.Id })
+        </aside>
+    </section>
 </div>

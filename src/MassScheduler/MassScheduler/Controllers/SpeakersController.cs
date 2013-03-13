@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,9 +9,6 @@ namespace MassScheduler.Controllers
 {
     public class SpeakersController : BaseController
     {
-        private readonly UploadHelper _uploadHelper = new UploadHelper();
-        //
-        // GET: /Speakers/
 
         public ActionResult Index()
         {
@@ -23,9 +16,6 @@ namespace MassScheduler.Controllers
 
             return View(speakers);
         }
-
-        //
-        // GET: /Speakers/Details/5
 
         public ActionResult Details(int id)
         {
@@ -39,9 +29,7 @@ namespace MassScheduler.Controllers
             return View(speaker);
         }
 
-        //
-        // GET: /Speakers/Create
-
+        [Authorize(Roles = @"hks-a\GreenweekAdmin")]
         public ActionResult Create()
         {
             var speaker = new Speaker();
@@ -49,10 +37,7 @@ namespace MassScheduler.Controllers
             return View(speaker);
         }
 
-        //
-        // POST: /Speakers/Create
-
-        [HttpPost]
+        [HttpPost, Authorize(Roles = @"hks-a\GreenweekAdmin")]
         public ActionResult Create(Speaker speaker, HttpPostedFileBase Photo)
         {
             if (ModelState.IsValid)
@@ -68,56 +53,92 @@ namespace MassScheduler.Controllers
             return View(speaker);
         }
 
-        //
-        // GET: /Speakers/Edit/5
-
+        [Authorize(Roles = @"hks-a\GreenweekAdmin")]
         public ActionResult Edit(int id)
         {
-            return View();
+            var speaker = Db.Speakers.Find(id);
+
+            if (speaker == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(speaker);
         }
 
-        //
-        // POST: /Speakers/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [HttpPost, Authorize(Roles = @"hks-a\GreenweekAdmin")]
+        public ActionResult Edit(int id, Speaker posted, HttpPostedFileBase photo)
         {
+            Speaker speaker = Db.Speakers.Find(id);
+
+            if (speaker == null)
+            {
+                return HttpNotFound();
+            }
+
             try
             {
-                // TODO: Add update logic here
+                UpdateModel(speaker, new[] {"Name", "Title", "Email", "Organization"});
+                if (photo != null)
+                {
+                    var image = UploadHelper.HandleUploadedImage(photo);
+                    speaker.Photo = image;
+                }
 
-                return RedirectToAction("Index");
+                Db.SaveChanges();
+
+                return RedirectToAction("details", new { id = id });
             }
             catch
             {
-                return View();
+                return View(posted);
             }
         }
 
-        //
-        // GET: /Speakers/Delete/5
 
+        [Authorize(Roles = @"hks-a\GreenweekAdmin")]
         public ActionResult Delete(int id)
         {
-            return View();
+            var speaker = Db.Speakers.Find(id);
+
+            if (speaker == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(speaker);
         }
 
-        //
-        // POST: /Speakers/Delete/5
-
-        [HttpPost]
+        [HttpPost, Authorize(Roles = @"hks-a\GreenweekAdmin")]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
+                var speaker = Db.Speakers.Find(id);
 
-                return RedirectToAction("Index");
+                if (speaker == null)
+                {
+                    return HttpNotFound();
+                }
+
+                Db.Speakers.Remove(speaker);
+                Db.SaveChanges();
+
+                return RedirectToAction("index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("index");
             }
+        }
+
+        [ChildActionOnly]
+        public ActionResult SpeakerList(int? id)
+        {
+            var speakers = Db.Speakers.OrderBy(x => x.Name);
+            ViewBag.CurrentSpeaker = id;
+
+            return PartialView(speakers);
         }
     }
 }

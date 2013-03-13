@@ -338,6 +338,10 @@
     <Content Include="Views\Speakers\Create.cshtml" />
     <Content Include="Views\Speakers\Index.cshtml" />
     <Content Include="Views\Speakers\Details.cshtml" />
+    <Content Include="Views\Speakers\SpeakerList.cshtml" />
+    <Content Include="Views\Speakers\Edit.cshtml" />
+    <Content Include="Views\Speakers\_SpeakerFields.cshtml" />
+    <Content Include="Views\Speakers\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

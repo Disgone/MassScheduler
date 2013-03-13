@@ -468,7 +468,8 @@ fieldset legend {
 }
 fieldset input[type='text'],
 fieldset input[type='email'],
-fieldset input[type='number'] {
+fieldset input[type='number'],
+fieldset input[type='file'] {
   max-width: 700px;
   width: 50%;
 }
@@ -483,6 +484,7 @@ fieldset label {
 fieldset input[type='text'],
 fieldset input[type='email'],
 fieldset input[type='number'],
+fieldset input[type='file'],
 fieldset textarea {
   margin-bottom: 10px;
   padding: 3px;

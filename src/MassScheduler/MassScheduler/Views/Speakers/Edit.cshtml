@@ -1,14 +1,14 @@
 ﻿@model MassScheduler.Models.Speaker
 
 @{
-    ViewBag.Title = "Create Speaker";
+    ViewBag.Title = "Edit Speaker: " + Model.Name;
 }
 
 <heading>
     <h2>@ViewBag.Title</h2>
 </heading>
 <section>
-    @using (Html.BeginForm("create", "speakers", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("edit", "speakers", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
@@ -16,8 +16,15 @@
         <fieldset>
             <legend>Speaker Details</legend>
 
+            @Html.HiddenFor(model => model.Id)
+
             @Html.Partial("_SpeakerFields")
             
+            <p>
+                <strong>Current Image:</strong><br/>
+                @Html.UploadedImage(Model.Photo)
+            </p>
+
             <div class="editor-label">
                 @Html.LabelFor(model => model.Photo)
             </div>
@@ -26,11 +33,13 @@
             </div>
 
             <p class="form-controls">
-                <input type="submit" value="Create Speaker" class="button minimal" />
+                <input type="submit" value="Save Changes" class="button minimal" /> or
+                @Html.ActionLink("Cancel", "details", "speakers", new { id = Model.Id }, null)
             </p>
         </fieldset>
     }
 </section>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

@@ -1,0 +1,10 @@
+﻿@model IEnumerable<MassScheduler.Models.Speaker>
+
+<ul class="menu">
+    @foreach (var item in Model)
+    {
+        <li>
+            @Html.ActionLink(item.Name, "details", "speakers", new { id = item.Id }, new { @class = (ViewBag.CurrentSpeaker == item.Id ? "active" : null) })
+        </li>
+    }
+</ul> 

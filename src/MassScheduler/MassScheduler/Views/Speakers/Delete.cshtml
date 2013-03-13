@@ -1,0 +1,27 @@
+﻿@model MassScheduler.Models.Speaker
+
+@{
+    ViewBag.Title = "Confirm Deletion";
+}
+
+<div class="page">
+    <header>
+        <span class="heading">
+            @Html.ActionLink("Speakers", "index", "speakers")
+        </span>
+    </header>
+    <section class="speaker confirmation">
+        <hgroup>
+            <h1>@ViewBag.Title</h1>
+            <h2>Are you sure you want to remove "<em>@Model.Name</em>"?</h2>
+        </hgroup>
+        <p>This action is permanent and cannot be undone.</p>
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+            <p class="form-controls">
+                <input type="submit" value="Delete Speaker" class="button minimal" /> or
+                @Html.ActionLink("Cancel", "index")
+            </p>
+        }
+    </section>
+</div>
