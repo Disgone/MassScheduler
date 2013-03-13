@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
 namespace MassScheduler.Models
@@ -25,5 +26,7 @@ namespace MassScheduler.Models
         public string Bio { get; set; }
 
         public string Photo { get; set; }
+
+        public virtual ICollection<Meeting> Meetings { get; set; }
     }
 }
