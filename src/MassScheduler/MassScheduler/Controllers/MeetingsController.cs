@@ -36,6 +36,7 @@ namespace MassScheduler.Controllers
             return View(meeting);
         }
 
+        [Authorize(Roles = @"hks-a\GreenweekAdmin")]
         public ActionResult Create()
         {
             var date = GetNextTimeIncrement(DateTime.Now);
@@ -50,18 +51,20 @@ namespace MassScheduler.Controllers
                 Speakers = new List<Speaker>()
             };
 
-            ViewBag.Speakers =
-                Db.Speakers
-                  .ToList()
-                  .OrderBy(x => x.Name)
-                  .Select(x => new SelectListItem() {Selected = false, Text = x.Name, Value = x.Id.ToString()});
+            ViewBag.Presenters = GetSpeakerList();
 
             return View(meeting);
         }
 
-        [HttpPost]
-        public ActionResult Create(Meeting meeting)
+        [HttpPost, ValidateAntiForgeryToken, Authorize(Roles = @"hks-a\GreenweekAdmin")]
+        public ActionResult Create(Meeting meeting, int[] presenters)
         {
+            if (presenters != null)
+            {
+                var speakers = Db.Speakers.Where(s => presenters.Contains(s.Id)).ToList();
+                meeting.UpdateSpeakers(speakers);
+            }
+
             if (ModelState.IsValid)
             {
                 meeting.Creator = CurrentUser.Username;
@@ -77,9 +80,12 @@ namespace MassScheduler.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.Presenters = GetSpeakerList();
+
             return View(meeting);
         }
 
+        [Authorize(Roles = @"hks-a\GreenweekAdmin")]
         public ActionResult Edit(int id)
         {
             var meeting = Db.Meetings.Find(id);
@@ -97,11 +103,13 @@ namespace MassScheduler.Controllers
             meeting.StartDate = TimeZone.CurrentTimeZone.ToLocalTime(meeting.StartDate);
             meeting.EndDate = TimeZone.CurrentTimeZone.ToLocalTime(meeting.EndDate);
 
+            ViewBag.Presenters = GetSpeakerList(meeting.Speakers);
+
             return View(meeting);
         }
 
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [HttpPost, ValidateAntiForgeryToken, Authorize(Roles = @"hks-a\GreenweekAdmin")]
+        public ActionResult Edit(int id, int[] presenters, FormCollection collection)
         {
             Meeting meeting = Db.Meetings.Find(id);
 
@@ -115,9 +123,16 @@ namespace MassScheduler.Controllers
                 return View("InvalidOwner");
             }
 
+            meeting.Speakers.Clear();
+            if (presenters != null)
+            {
+                var speakers = Db.Speakers.Where(s => presenters.Contains(s.Id)).ToList();
+                meeting.UpdateSpeakers(speakers);
+            }
+
             try
             {
-                UpdateModel(meeting);
+                UpdateModel(meeting, null, null, new[] { "Speakers" });
                 meeting.StartDate = TimeZone.CurrentTimeZone.ToUniversalTime(meeting.StartDate);
                 meeting.EndDate = TimeZone.CurrentTimeZone.ToUniversalTime(meeting.EndDate);
                 meeting.Modified = DateTime.UtcNow;
@@ -128,10 +143,12 @@ namespace MassScheduler.Controllers
             }
             catch
             {
+                ViewBag.Presenters = GetSpeakerList(meeting.Speakers);
                 return View(meeting);
             }
         }
 
+        [Authorize(Roles = @"hks-a\GreenweekAdmin")]
         public ActionResult Delete(int id)
         {
             var meeting = Db.Meetings.Find(id);
@@ -145,7 +162,7 @@ namespace MassScheduler.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken, Authorize(Roles = @"hks-a\GreenweekAdmin")]
         public ActionResult Delete(int id, FormCollection collection)
         {
             var meeting = Db.Meetings.Find(id);
@@ -167,7 +184,43 @@ namespace MassScheduler.Controllers
             return RedirectToAction("index");
         }
 
-        private DateTime GetNextTimeIncrement(DateTime date)
+
+        /// <summary>
+        /// Gets a list of speakers.
+        /// </summary>
+        /// <param name="selected">The selected speakers.</param>
+        /// <returns></returns>
+        private IEnumerable<SelectListItem> GetSpeakerList(IEnumerable<Speaker> selected = null)
+        {
+            if (selected == null)
+            {
+                selected = new List<Speaker>();
+            }
+
+            return Db.Speakers
+                      .ToList()
+                      .OrderBy(x => x.Name)
+                      .Select(x => new SelectListItem()
+                      {
+                          Selected = selected.Contains(x),
+                          Text = x.Name,
+                          Value = x.Id.ToString()
+                      });
+        }
+
+        /// <summary>
+        /// Gets the next future 15 minute increment
+        /// <code>
+        /// <example>
+        ///     // Pseudo
+        ///     var time = GetNextTimeIncrement(9:37pm)
+        ///     // time should equal 9:45
+        /// </example>
+        /// </code>
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <returns></returns>
+        private static DateTime GetNextTimeIncrement(DateTime date)
         {
             if (date.Minute > 45)
             {

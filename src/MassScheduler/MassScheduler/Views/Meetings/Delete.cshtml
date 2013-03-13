@@ -1,15 +1,15 @@
 ﻿@model MassScheduler.Models.Meeting
 
 @{
-    ViewBag.Title = "Confirm Deletion";
+    ViewBag.Title = "Confirm Event Deletion";
 }
 
 <header>
     <h2>@ViewBag.Title</h2>
+    <h3>Are you sure you want to delete <em>"@Html.DisplayFor(model => model.Title)"</em>?</h3>
 </header>
 <section>
-    <h2>Are you sure you want to delete <em>"@Html.DisplayFor(model => model.Title)"</em>?</h2>
-
+    <p>This action is permanent and cannot be undone.</p>
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
         <p class="form-controls">

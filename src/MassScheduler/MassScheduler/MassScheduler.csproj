@@ -338,6 +338,7 @@
     <Content Include="Views\Speakers\Edit.cshtml" />
     <Content Include="Views\Speakers\_SpeakerFields.cshtml" />
     <Content Include="Views\Speakers\Delete.cshtml" />
+    <Content Include="Views\Meetings\DisplayTemplates\MeetingSpeakers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

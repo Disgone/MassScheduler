@@ -1,0 +1,13 @@
+﻿@model IEnumerable<MassScheduler.Models.Speaker>
+
+
+@{
+    if (Model != null)
+    {
+        int i = Model.Count();
+        foreach (var speaker in Model)
+        {
+            @Html.ActionLink(speaker.Name, "details", "speakers", new {id = speaker.Id}, new {title = ""})<text>, @speaker.Organization</text><br/>
+        }
+    }
+}

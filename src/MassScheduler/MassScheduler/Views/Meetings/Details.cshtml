@@ -8,20 +8,26 @@
 
 <heading>
     <h2>@Model.Title</h2>
-    <h3>Presented by <em>@Model.Sponsor</em></h3>
+    <h3>Sponsored by <em>@Model.Sponsor</em></h3>
 </heading>
 <div class="schedule">
     <section class="event @(Model.IsUserAttending(user.Username) ? "attending" : "" )" id="event-@Model.Id" data-attending="@(Model.IsUserAttending(user.Username) ? "1" : "0" )">
-        <div class="meeting-meta">
+        <header class="meeting-meta">
             @Model.StartDate.ToLongDateString()
             <dl>
+                @if (Model.Speakers.Any())
+                {
+                    <dt>Speaker(s):</dt>
+                    <dd>
+                        @Html.DisplayFor(s => Model.Speakers, "MeetingSpeakers")
+                    </dd>
+                }
                 <dt>When:</dt> 
                 <dd>@Model.StartDate.ToShortTimeString() - @Model.EndDate.ToShortTimeString()</dd>
                 <dt>Where:</dt> 
                 <dd>@Model.Location</dd>
             </dl>
-        
-        </div>
+        </header>
     
         <ul class='action-bar'>
             @if (user.Username == Model.Creator)
@@ -33,9 +39,11 @@
             <li>@Html.ActionLink("Cancel my RSVP", "cancel", "rsvp", new { id = Model.Id }, new { @class = "cancel-rsvp-button button", title = "Cancel my RSVP" })</li>
             <li>@Html.ActionLink("Add to my Calendar", "ical", "services", new { id = Model.Id }, new { @class = "download-button button", title = "Add to Calendar" })</li>
         </ul>
+        
+        <article>
+            @Html.Markdown(Model.Descritpion)
+        </article>
 
-        <p>@Model.Descritpion</p>
-    
         <h4>Attendees (@Model.RSVP.Count):</h4>
         @if (Model.RSVP.Any())
         {

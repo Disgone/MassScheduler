@@ -15,7 +15,7 @@
         </ul>
     </nav>
 </heading>
-<section class="schedule">
+<section class="events schedule">
     @{
         if (Model.Any())
         {
@@ -49,7 +49,7 @@
                     </div>
                     <div class="event-bar event-preview hidden" id="e_@item.Id">
                         <p>
-                            @item.Descritpion
+                            @Html.Markdown(item.Descritpion)
                         </p>
                         <ul class='action-bar'>
                             <li>@Html.ActionLink("View more details", "details", new {id = item.Id})</li>

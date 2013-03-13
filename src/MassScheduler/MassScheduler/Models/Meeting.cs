@@ -51,11 +51,29 @@ namespace MassScheduler.Models
         public virtual ICollection<RSVP> RSVP { get; set; }
 
         [Display(Name = "Speaker(s)")]
-        public virtual ICollection<Speaker> Speakers { get; set; } 
+        public virtual ICollection<Speaker> Speakers { get; set; }
+
+        public Meeting()
+        {
+            Created = DateTime.UtcNow;
+            Modified = DateTime.UtcNow;
+        }
 
         public bool IsUserAttending(string username)
         {
             return RSVP.Any(e => e.AttendeeUsername == username);
+        }
+
+        public void AddSpeaker(Speaker speaker)
+        {
+            if(!Speakers.Contains(speaker))
+                Speakers.Add(speaker);
+        }
+
+        public void UpdateSpeakers(IEnumerable<Speaker> speakers)
+        {
+            Speakers.Clear();
+            Speakers = speakers.ToList();
         }
     }
 }

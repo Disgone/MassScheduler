@@ -394,6 +394,9 @@ h4 {
   min-width: 760px;
   width: 70%;
 }
+.page {
+  background-color: #FFF;
+}
 #menu {
   overflow: hidden;
   margin: 0;
@@ -416,16 +419,6 @@ h4 {
 #menu a:focus {
   background-color: #c9cead;
 }
-.split-view {
-  overflow: hidden;
-}
-.split-view .split-left {
-  float: left;
-  width: 35%;
-}
-.split-view .split-right {
-  margin-left: 40%;
-}
 .events {
   width: 100%;
 }
@@ -444,8 +437,13 @@ h4 {
 .meeting-meta dt {
   display: block;
   float: left;
-  width: 75px;
+  width: 85px;
+  margin-right: 5px;
+  text-align: right;
   font-weight: bold;
+}
+.meeting-meta dd {
+  margin-left: 90px;
 }
 .action-bar {
   padding: 0;
