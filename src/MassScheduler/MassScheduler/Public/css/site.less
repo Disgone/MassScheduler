@@ -77,19 +77,6 @@ img {
     width: 70%;
 }
 
-.page {
-    position: relative;
-    padding: 2rem;
-    background-color: #FFF;
-
-    header {
-        h1 {
-            margin-top: 0;
-            font-size: 1.5em;
-        }
-    }
-}
-
 .heading {
     position: relative;
     margin-left: -3.5em;
@@ -109,9 +96,29 @@ img {
     }
 }
 
+.page {
+    position: relative;
+    padding: 2rem;
+    background-color: #FFF;
+    .box-shadow(0px 1px 5px rgba(0, 0, 0, .15));
+
+    header {
+        h1 {
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+    }
+}
+
+#logo {
+    h1 {
+        .hide();
+    }
+}
+
 #menu {
     overflow: hidden;
-    margin: 0;
+    margin: 0 0 0 5px;
     padding: 0;
 
     li {
@@ -227,7 +234,8 @@ fieldset {
     input[type='text'],
     input[type='email'],
     input[type='number'],
-    input[type='file'] {
+    input[type='file'],
+    select[multiple] {
         max-width: 700px;
         width: 50%;
     }
@@ -246,6 +254,7 @@ fieldset {
     input[type='email'],
     input[type='number'],
     input[type='file'],
+    select[multiple],
     textarea {
         margin-bottom: 10px;
         padding: 3px;

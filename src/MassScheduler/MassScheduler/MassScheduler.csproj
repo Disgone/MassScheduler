@@ -266,6 +266,7 @@
     <Content Include="Public\css\site.less" />
     <Content Include="Public\css\settings.less" />
     <Content Include="Public\img\diagonal_waves.png" />
+    <Content Include="Public\img\hks-greenweek-logo.png" />
     <Content Include="Public\img\star.png" />
     <Content Include="Public\js\schedule.coffee" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />

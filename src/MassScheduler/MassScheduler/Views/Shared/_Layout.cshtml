@@ -14,7 +14,11 @@
     <body>
         <div class="wrapper">
             <header id="page-hdr" role="banner">
-                <h1>@Html.RouteLink("HKS Greenweek 2013", "Default")</h1>
+                <h1 id="logo">
+                    <a href="@Url.RouteUrl("Default")">
+                        <img src="@Url.Content("~/public/img/hks-greenweek-logo.png")" alt="HKS Greenweek 2013" />
+                    </a>
+                </h1>
                 <nav>
                     <ul id="menu" role="navigation">
                         <li>@Html.ActionLink("Schedule", "index", "Meetings")</li>
