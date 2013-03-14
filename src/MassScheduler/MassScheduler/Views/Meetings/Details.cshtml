@@ -15,7 +15,7 @@
     </header>
     <article class="event @(Model.IsUserAttending(user.Username) ? "attending" : "" )" id="event-@Model.Id" data-attending="@(Model.IsUserAttending(user.Username) ? "1" : "0" )">
         <div class="group">
-            <aside class="meeting-meta secondary">
+            <aside class="meeting-meta secondary-med">
                 <dl>
                     @if (Model.Speakers.Any())
                     {
@@ -31,7 +31,7 @@
                 </dl>
                 
             </aside>
-            <article class="focus">
+            <article class="focus-med">
                 <time>@Model.StartDate.ToLongDateString() @@ @Model.LocalStartDate.ToShortTimeString()</time>
                 @Html.Markdown(Model.Descritpion)
                 
@@ -53,20 +53,10 @@
             </article>
             
             <hr/>
-            <h4>Attendees (@Model.RSVP.Count):</h4>
-            <ul>
-                @if (Model.RSVP.Any())
-                {
-                    foreach (var r in Model.RSVP)
-                    {
-                        <li data-aid="@r.Id">@r.AttendeeName</li>
-                    }
-                }
-                else
-                {
-                    <li>There are no RSVPs yet.  You can be the first.</li>
-                }
-            </ul>
+            
+            <div id="attendees">
+                @Html.DisplayFor(x => x.RSVP, "EventRsvpList")
+            </div>
         </div>
     </article>
 

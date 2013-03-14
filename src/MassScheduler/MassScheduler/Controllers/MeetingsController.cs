@@ -181,6 +181,20 @@ namespace MassScheduler.Controllers
             return RedirectToAction("index");
         }
 
+        public ActionResult GetAttendees(int id)
+        {
+            var meeting = Db.Meetings.Find(id);
+
+            if (meeting == null)
+            {
+                return HttpNotFound();
+            }
+
+            var rsvps = meeting.RSVP.OrderBy(x => x.AttendeeName).ToList();
+
+            return PartialView("DisplayTemplates/EventRsvpList", rsvps);
+        }
+
 
         /// <summary>
         /// Gets a list of speakers.

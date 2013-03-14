@@ -4,27 +4,34 @@
     ViewBag.Title = "Edit Event: " + @Model.Title;
 }
 
-<heading>
-    <h2>@ViewBag.Title</h2>
-</heading>
-<section>
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
+<div class="page">
+    <span class="heading">
+        @Html.ActionLink("Events", "index", "meetings")
+    </span>
+    <section>
+        <header>
+            <h1>@ViewBag.Title</h1>
+        </header>
 
-        <fieldset>
-            <legend>Event Details</legend>
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
 
-            @Html.HiddenFor(model => model.Id)
+            <fieldset>
+                <legend>Event Details</legend>
 
-            @Html.Partial("_MeetingFields")
+                @Html.HiddenFor(model => model.Id)
 
-            <p class="form-controls">
-                <input type="submit" value="Save" class="button minimal" />
-            </p>
-        </fieldset>
-    }
-</section>
+                @Html.Partial("_MeetingFields")
+
+                <p class="form-controls">
+                    <input type="submit" value="Save" class="button positive" />
+                </p>
+            </fieldset>
+        }
+    </section>
+</div>
+
 @section Scripts {
     @Scripts.Render("~/scripts/jqueryval")
     @Scripts.Render("~/scripts/jqueryui")

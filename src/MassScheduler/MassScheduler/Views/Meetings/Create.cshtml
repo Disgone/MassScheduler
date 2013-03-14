@@ -4,25 +4,31 @@
     ViewBag.Title = "Create an Event";
 }
 
-<heading>
-    <h2>@ViewBag.Title</h2>
-</heading>
-<section>
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
 
-        <fieldset>
-            <legend>Event Details</legend>
-            @Html.Partial("_MeetingFields")
+<div class="page">
+    <span class="heading">
+        @Html.ActionLink("Events", "index", "meetings")
+    </span>
+    <section>
+        <header>
+            <h1>@ViewBag.Title</h1>
+        </header>
 
-            <p class="form-controls">
-                <input type="submit" value="Create Event" class="button minimal" />
-            </p>
-        </fieldset>
-    }
-</section>
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
 
+            <fieldset>
+                <legend>Event Details</legend>
+                @Html.Partial("_MeetingFields")
+
+                <p class="form-controls">
+                    <input type="submit" value="Create Event" class="button positive" />
+                </p>
+            </fieldset>
+        }
+    </section>
+</div>
 
 @section Scripts {
     @Scripts.Render("~/scripts/jqueryval")

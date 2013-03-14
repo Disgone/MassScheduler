@@ -1,0 +1,16 @@
+﻿@model IEnumerable<MassScheduler.Models.RSVP>
+
+<h4>Attendees (@Model.Count()):</h4>
+<ul class="list-plain">
+    @if (Model.Any())
+    {
+        foreach (var r in Model)
+        {
+            <li>@r.AttendeeName</li>
+        }
+    }
+    else
+    {
+        <li>There are no RSVPs yet.  You can be the first.</li>
+    }
+</ul>

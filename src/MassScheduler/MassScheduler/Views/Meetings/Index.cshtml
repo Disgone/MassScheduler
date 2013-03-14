@@ -59,8 +59,8 @@
                                 <li>@Html.ActionLink("View more details", "details", new {id = item.Id})</li>
                                 @if (!item.HasEnded())
                                 {
-                                    <li>@Html.ActionLink("RSVP!", "register", "rsvp", new {id = item.Id}, new {@class = "rsvp-button button", title = "RSVP to this Event"})</li>
-                                    <li>@Html.ActionLink("Cancel my RSVP", "cancel", "rsvp", new {id = item.Id}, new {@class = "cancel-rsvp-button button", title = "Cancel my RSVP"})</li>
+                                    <li>@Html.ActionLink("RSVP to Event", "register", "rsvp", new {id = item.Id}, new {@class = "rsvp-button button positive", title = "RSVP to this Event"})</li>
+                                    <li>@Html.ActionLink("Cancel my RSVP", "cancel", "rsvp", new {id = item.Id}, new {@class = "cancel-rsvp-button button destructive", title = "Cancel my RSVP"})</li>
                                     <li>@Html.ActionLink("Add to my Calendar", "ical", "services", new {id = item.Id}, new {@class = "download-button button", title = "Add to Calendar"})</li>
                                 }
                             </ul>
