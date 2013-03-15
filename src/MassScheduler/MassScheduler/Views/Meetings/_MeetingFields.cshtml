@@ -49,16 +49,44 @@
 </div>
 
 <div class="editor-label">
+    @Html.LabelFor(model => model.Speakers)
+</div>
+<div class="editor-field">
+    @Html.DropDownList("Presenters", (IEnumerable<SelectListItem>)ViewBag.SpeakerList, new { multiple = true })
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.MeetingUrl)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.MeetingUrl)
+    @Html.ValidationMessageFor(model => model.MeetingUrl)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.AIACredits)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.AIACredits)
+    @Html.ValidationMessageFor(model => model.AIACredits)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.GBCICredit)
+</div>
+<div class="editor-field">
+    <select name="GBCICredit" id="GBCICredit">
+        <option value="No">No</option>
+        <option value="Yes">Yes</option>
+        <option value="Self Report">Self Report</option>
+    </select>
+    @Html.ValidationMessageFor(model => model.GBCICredit)
+</div>
+
+<div class="editor-label">
     @Html.LabelFor(model => model.Contact)
 </div>
 <div class="editor-field">
     @Html.EditorFor(model => model.Contact)
     @Html.ValidationMessageFor(model => model.Contact)
-</div>
-
-<div class="editor-label">
-    @Html.LabelFor(model => model.Speakers)
-</div>
-<div class="editor-field">
-    @Html.DropDownList("Presenters", (IEnumerable<SelectListItem>)ViewBag.SpeakerList, new { multiple = true })
 </div>

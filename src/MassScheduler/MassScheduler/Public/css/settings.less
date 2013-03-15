@@ -4,6 +4,7 @@
 @lineHeight: 1.5;
 
 @green: #88A02F;
+@blue: #5c7e9b;
 @lightGreen: #DEE1CD;
 
 
@@ -186,4 +187,22 @@
     text-indent: 100%;
     white-space: nowrap;
     overflow: hidden;
+}
+
+// Clearfix
+// --------
+// For clearing floats like a boss h5bp.com/q
+.clearfix {
+  *zoom: 1;
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+    // Fixes Opera/contenteditable bug:
+    // http://nicolasgallagher.com/micro-clearfix-hack/#comment-36952
+    line-height: 0;
+  }
+  &:after {
+    clear: both;
+  }
 }

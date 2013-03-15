@@ -12,13 +12,16 @@
     </span>
     <section class="events schedule">
         <header>
-            <h1>@ViewBag.Title</h1>
-            <nav>
-                <ul>
+            <nav class="page-actions">
+                <ul class="action-bar">
                     <li>@Html.RouteLink("Download Calendar", "iCalFeed")</li>
-                    <li>@Html.ActionLink("Create New", "create")</li>
+                    @if (User.IsInRole(@"hks-a\GreenweekAdmin"))
+                    {
+                        <li>@Html.ActionLink("Create New", "create")</li>
+                    }
                 </ul>
             </nav>
+            <h1>@ViewBag.Title</h1>
         </header>
         @{
             if (Model.Any())
@@ -41,13 +44,10 @@
                             <div class="col2">
                                 <div class="title-link">
                                     <i class="icon-attending icon"></i>
-                                    @Html.ActionLink(item.Title, "Details", new {id = item.Id}, new {@class = "title-link"})
+                                    @Html.ActionLink(item.Title, "details", new {id = item.Id}, new {@class = "title-link"})
                                 </div>
                             </div>
                             <div class="col3">
-                                @Html.DisplayFor(modelItem => item.Sponsor)
-                            </div>
-                            <div class="col4">
                                 @Html.DisplayFor(modelItem => item.Location)
                             </div>
                         </div>

@@ -2,7 +2,7 @@
 @import 'normalize';
 
 body {
-    background: url('../img/diagonal_waves.png');
+    background: #b2c77e url(/public/img/square_bg.png);
     color: @fontColor;
     font-size: @fontSize;
     font-family: @fontFamily;
@@ -10,11 +10,11 @@ body {
 }
 
 a {
-    color: @green;
+    color: @blue;
     text-decoration: none;
 
     &:hover {
-        color: darken(@green, 20%);
+        color: darken(@blue, 20%);
     }
 }
 
@@ -72,22 +72,22 @@ img {
 }
 
 .wrapper {
-    margin: 2em auto;
+    margin: 0 auto 2em;
     min-width: 760px;
     width: 70%;
 }
 
 .heading {
     position: relative;
-    margin-left: -3.5em;
-    margin-bottom: 2em;
     top: -.85em;
+    margin-bottom: 2em;
+    margin-left: -3.5em;
 
     a {
-        .block-strip(@green);
         display: inline-block;
         color: #FFF;
         .transition(e('color 150ms ease-in, background-color 150ms ease-out'));
+        .block-strip(@blue);
 
         &:hover,
         &:focus {
@@ -110,6 +110,10 @@ img {
     }
 }
 
+#page-hdr {
+    margin-top: 2em;
+}
+
 #logo {
     h1 {
         .hide();
@@ -117,27 +121,32 @@ img {
 }
 
 #menu {
-    overflow: hidden;
+    position: relative;
     margin: 0 0 0 5px;
     padding: 0;
+    .clearfix;
 
     li {
         float: left;
-        list-style: none;
         margin-right: 2px;
-        border: 1px solid darken(@lightGreen, 10%);
-        border-width: 1px 1px 0;
+        list-style: none;
     }
 
     a {
         display: block;
         padding: .5em 1.25em;
-        background-color: @lightGreen;
-        .transition(background-color 250ms ease-out);
+        border: 1px solid darken(@green, 10%);
+        border-width: 1px 1px 0;
+        background-color: @green;
+        color: #FFF;
+        .transition(e('all 200ms ease-out'));
 
         &:hover,
         &:focus {
-            background-color: darken(@lightGreen, 10%);
+            margin-top: -.5em;
+            padding-bottom: 1em;
+            background-color: darken(@green, 15%);
+            color: #FFF;
         }
     }
 }
@@ -147,7 +156,8 @@ img {
 
     .group-date {
         padding: 10px;
-        background: darken(@lightGreen, 30%);
+        background: @green;
+        color: #FFF;
         font-size: 1.1em;
     }
 
@@ -157,6 +167,10 @@ img {
         overflow: hidden;
         padding: 10px;
         border-bottom: 1px solid darken(@lightGreen,20%);
+    }
+
+    > .event:nth-child(even) {
+        background-color: lighten(@lightGreen, 11%);
     }
 }
 
@@ -183,33 +197,44 @@ img {
     overflow: hidden;
 
     .item {
-        float: left;
-        width: 24%;
-        margin-right: 1%;
         position: relative;
+        display: block;
+        float: left;
+        overflow: hidden;
+        margin-right: 1%;
+        margin-bottom: 1%;
+        width: 19%;
+        height: 200px;
         text-align: center;
-        max-width: 200px;
-        max-height: 200px;
+
+        img {
+            width: 100%;
+        }
     }
 }
 
 .speakers {
     .speaker {
         h2 {
+            position: absolute;
+            right: 0;
+            bottom: 0;
             margin: 0;
             padding: 2px 5px;
-            font-size: 1.25em;
             background-color: @lightGreen;
             background-color: rgba(222, 225, 205, .9);
-            position: absolute;
-            bottom: 0;
-            right: 0;
+            font-size: 1.25em;
         }
     }
 }
-    
+
+.bio-info {
+    margin-left: 10px;
+}
+
 
 .action-bar {
+    margin: 0;
     padding: 0;
 
     li {
@@ -218,12 +243,18 @@ img {
     }
 }
 
+.page-actions {
+    float: right;
+}
+
 /*
     Forms
 */
-fieldset {
-    padding: 0;
-    border: none;
+form {
+    fieldset {
+        padding: 0;
+        border: none;
+    }
 
     legend {
         margin-bottom: 1em;
@@ -254,7 +285,8 @@ fieldset {
     input[type='email'],
     input[type='number'],
     input[type='file'],
-    select[multiple],
+    input[type='checkbox'],
+    select,
     textarea {
         margin-bottom: 10px;
         padding: 3px;
@@ -268,18 +300,15 @@ fieldset {
 [class^="icon-"],
 [class*=" icon-"] {
     display: inline-block;
-    margin-top: 1px;
-    width: 14px;
-    height: 14px;
+    margin-bottom: -3px;
+    width: 16px;
+    height: 16px;
     background-repeat: no-repeat;
-    line-height: 14px;
-}
-
-.icon-attending {
+    line-height: 16px;
 }
 
 .attending .icon-attending {
-    background-image: url('../img/star.png');
+    background-image: url(/public/img/accept.png);
 }
 
 .col1,
@@ -292,20 +321,17 @@ fieldset {
 }
 
 .col1 {
-    width: 25%;
+    width: 30%;
 }
 
 .col2 {
-    width: 45%;
+    width: 50%;
 }
 
-.col3,
-.col4 {
-    width: 15%;
-}
-
-.col4 {
+.col3 {
     float: right;
+    width: 20%;
+    text-align: right;
 }
 
 .list-plain {
@@ -345,11 +371,11 @@ fieldset {
     border: 1px solid darken(@bg, 10%);
     border-radius: 3px;
     background-color: @bg;
-    box-shadow: inset 0 0 1px 1px lighten(@bg,3%);
     color: @fontColor;
     text-align: center;
     text-shadow: 0 1px 0 lighten(@bg, 10%);
     .transition(all 150ms ease-in);
+    .box-shadow(inset 0 0 1px 1px lighten(@bg,3%));
 
     &:hover {
         background-color: darken(@bg, 5%);
@@ -361,7 +387,7 @@ fieldset {
     &:active {
         border-color: darken(@bg, 10%);
         background-color: darken(@bg, 5%);
-        box-shadow: inset 1px 0 2px 2px darken(@bg,15%);
+        .box-shadow(inset 1px 0 2px 2px darken(@bg,15%));
     }
 
     &.minimal {
@@ -369,21 +395,21 @@ fieldset {
     }
 
     &.positive {
-        @bg: @green;
+        @bg: @blue;
         @text: #FFF;
         border-color: darken(@bg, 10%);
         background-color: @bg;
-        box-shadow: inset 0 0 1px 1px lighten(@bg,3%);
         color: @text;
         text-shadow: 0 1px 0 darken(@bg, 50%);
+        .box-shadow(inset 0 0 1px 1px lighten(@bg,3%));
 
         &:hover {
-            background-color: darken(@bg, 5%);
-            box-shadow: inset 0 0 1px 1px darken(@bg,8%);
+            background-color: darken(@bg, 10%);
+            .box-shadow(inset 0 0 1px 1px darken(@bg,12%));
         }
 
         &:active {
-            box-shadow: inset 0 0 2px 2px darken(@bg,8%);
+            .box-shadow(inset 0 0 2px 2px darken(@bg,12%));
         }
     }
 
@@ -391,22 +417,24 @@ fieldset {
         @bg: #b70727;
         border-color: darken(@bg, 10%);
         background-color: @bg;
-        box-shadow: inset 0 0 1px 1px lighten(@bg,3%);
         color: #FFF;
         text-shadow: 0 1px 0 darken(@bg, 50%);
+        .box-shadow(inset 0 0 1px 1px lighten(@bg,3%));
 
         &:hover {
             background-color: darken(@bg, 5%);
-            box-shadow: inset 0 0 1px 1px darken(@bg,8%);
+            .box-shadow(inset 0 0 1px 1px darken(@bg,8%));
         }
     }
 }
 
 .group {
+    .clearfix;
+
     &:before,
     &:after {
-        content: "";
         display: table;
+        content: "";
     }
 
     &:after {
@@ -417,12 +445,20 @@ fieldset {
         position: relative;
         float: left;
         width: 75%;
+
+        &.med {
+            width: 60%;
+        }
     }
 
     .secondary {
         position: relative;
         float: left;
         width: 25%;
+
+        &.med {
+            width: 40%;
+        }
     }
 }
 
@@ -437,7 +473,7 @@ fieldset {
 
         &:first-child {
             .menu-item {
-                border-top: 1px solid darken(@lightGreen,10%);
+                border-top: 1px solid darken(@green,5%);
             }
         }
     }
@@ -446,13 +482,23 @@ fieldset {
         position: relative;
         display: block;
         padding: .5em 1em;
-        border-bottom: 1px solid darken(@lightGreen,10%);
+        border-bottom: 1px solid darken(@green,5%);
         background-color: @lightGreen;
         .block-strip(@lightGreen);
     }
 
+    a.menu-item {
+        .transition(all 125ms ease-in);
+
+        &:hover {
+            background-color: @blue;
+            color: #FFF;
+        }
+    }
+
     b.menu-item {
         background-color: @green;
+        color: #FFF;
         font-weight: normal;
 
         &:after {
@@ -474,5 +520,20 @@ fieldset {
         .menu-item {
             border-right: 1px solid darken(@lightGreen,10%);
         }
+    }
+}
+
+.notifications {
+    p {
+        margin: 0;
+        padding: .5em;
+        border: 1px solid darken(@green,10%);
+        border-width: 0 1px 1px 1px;
+        background: @lightGreen;
+    }
+
+    a.close {
+        float: right;
+        font-size: .85em;
     }
 }

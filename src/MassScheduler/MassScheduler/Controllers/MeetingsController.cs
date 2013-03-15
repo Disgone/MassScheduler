@@ -14,7 +14,8 @@ namespace MassScheduler.Controllers
         {
             var meetings = Db.Meetings
                              .Where(x => x.EndDate >= DateTime.UtcNow)
-                             .OrderBy(x => x.StartDate);
+                             .OrderBy(x => x.StartDate)
+                             .ToList();
 
             ViewBag.CurrentUser = CurrentUser;
             return View(meetings);

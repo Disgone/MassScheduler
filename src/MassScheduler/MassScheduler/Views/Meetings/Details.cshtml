@@ -11,11 +11,20 @@
         @Html.ActionLink("Events", "index", "meetings")
     </span>
     <header>
+        @if (user.Username == Model.Creator)
+        {
+            <nav class="page-actions">
+                <ul class="action-bar">
+                    <li>@Html.ActionLink("Edit this Event", "edit", new { id = Model.Id }, new { title = "Edit this Event" })</li>
+                    <li>@Html.ActionLink("Delete Event", "delete", new { id = Model.Id }, new { title = "Delete this Event" })</li>
+                </ul>
+            </nav>
+        }
         <h1>@Model.Title</h1>
     </header>
-    <article class="event @(Model.IsUserAttending(user.Username) ? "attending" : "" )" id="event-@Model.Id" data-attending="@(Model.IsUserAttending(user.Username) ? "1" : "0" )">
+    <article class="event @(Model.IsUserAttending(user.Username) ? "attending" : "" )" id="event-@Model.Id" data-eventid="@Model.Id">
         <div class="group">
-            <aside class="meeting-meta secondary-med">
+            <aside class="meeting-meta secondary med">
                 <dl>
                     @if (Model.Speakers.Any())
                     {
@@ -31,7 +40,7 @@
                 </dl>
                 
             </aside>
-            <article class="focus-med">
+            <article class="focus med">
                 <time>@Model.StartDate.ToLongDateString() @@ @Model.LocalStartDate.ToShortTimeString()</time>
                 @Html.Markdown(Model.Descritpion)
                 
@@ -44,24 +53,22 @@
                         <li>@Html.ActionLink("Cancel my RSVP", "cancel", "rsvp", new { id = Model.Id }, new { @class = "cancel-rsvp-button button destructive", title = "Cancel my RSVP" })</li>
                         <li>@Html.ActionLink("Add to my Calendar", "ical", "services", new { id = Model.Id }, new { @class = "download-button button", title = "Add to Calendar" })</li>
                     }
-                    @if (user.Username == Model.Creator)
-                    {
-                        <li>@Html.ActionLink("Edit this Event", "edit", new { id = Model.Id })</li>
-                        <li>@Html.ActionLink("Delete Event", "delete", new { id = Model.Id })</li>
-                    }
                 </ul>
             </article>
-            
-            <hr/>
-            
-            <div id="attendees">
-                @Html.DisplayFor(x => x.RSVP, "EventRsvpList")
-            </div>
+        </div>
+
+        <hr/> 
+
+        <div id="attendees">
+            @Html.DisplayFor(x => x.RSVP, "EventRsvpList")
         </div>
     </article>
 
 </div>
 @section scripts
 {
+    <script>
+        var baseUrl = "@Url.RouteUrl(new { action = "getattendees", controller = "meetings" })";
+    </script>
     @Scripts.Render("~/scripts/site")
 }

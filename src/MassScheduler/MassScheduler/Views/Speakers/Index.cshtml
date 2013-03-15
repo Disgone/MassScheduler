@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<MassScheduler.Models.Speaker>
 
 @{
-    ViewBag.Title = "Speakers";
+    ViewBag.Title = "Our Speakers";
 }
 
 <div class="page">
@@ -12,12 +12,13 @@
         <header>
             @if (User.IsInRole(@"hks-a\GreenweekAdmin"))
             {
-                <nav>
+                <nav class="page-actions">
                     <ul class='action-bar'>
                         <li>@Html.ActionLink("New Speaker", "create", "speakers")</li>
                     </ul>
                 </nav>
             }
+            <h1>@ViewBag.Title</h1>
         </header>
         @foreach (var item in Model)
         {

@@ -37,6 +37,15 @@ namespace MassScheduler.Models
         [StringLength(256, ErrorMessage = "Location may not be longer than 256 characters.")]
         public string Location { get; set; }
 
+        [Display(Name = "Lync Meeting Url")]
+        public string MeetingUrl { get; set; }
+
+        [Display(Name = "AIA Credit")]
+        public bool AIACredits { get; set; }
+
+        [Display(Name = "GBCI Credit")]
+        public string GBCICredit { get; set; }
+
         [Display(Name = "Contact Information")]
         public string Contact { get; set; }
 

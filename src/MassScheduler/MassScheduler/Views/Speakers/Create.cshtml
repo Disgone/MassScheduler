@@ -1,36 +1,42 @@
 ﻿@model MassScheduler.Models.Speaker
 
 @{
-    ViewBag.Title = "Create Speaker";
+    ViewBag.Title = "Create a New Speaker";
 }
 
-<heading>
-    <h2>@ViewBag.Title</h2>
-</heading>
-<section>
-    @using (Html.BeginForm("create", "speakers", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
+<div class="page">
+    <span class="heading">
+        @Html.ActionLink("Speakers", "index", "speakers")
+    </span>
+    <section>
+        <header>
+            <h2>@ViewBag.Title</h2>
+        </header>
+        @using (Html.BeginForm("create", "speakers", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
 
-        <fieldset>
-            <legend>Speaker Details</legend>
+            <fieldset>
+                <legend>Speaker Details</legend>
 
-            @Html.Partial("_SpeakerFields")
+                @Html.Partial("_SpeakerFields")
             
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Photo)
-            </div>
-            <div class="editor-field">
-                @Html.TextBox("Photo", null, new { @type = "file" })
-            </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Photo)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBox("Photo", null, new { @type = "file" })
+                </div>
 
-            <p class="form-controls">
-                <input type="submit" value="Create Speaker" class="button minimal" />
-            </p>
-        </fieldset>
-    }
-</section>
+                <p class="form-controls">
+                    <input type="submit" value="Create Speaker" class="button positive" />
+                </p>
+            </fieldset>
+        }
+    </section>
+</div>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

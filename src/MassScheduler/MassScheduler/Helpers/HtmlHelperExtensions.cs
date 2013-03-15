@@ -11,6 +11,9 @@ namespace MassScheduler.Helpers
     {
         public static IHtmlString UploadedImage(this HtmlHelper helper, string fileName, object htmlAttributes = null)
         {
+            if(string.IsNullOrEmpty(fileName))
+                return new MvcHtmlString(string.Empty);
+
             var uploadDirectory = WebConfigurationManager.AppSettings["UploadDirectory"];
             var uploadPath = Path.Combine(uploadDirectory, fileName);
             var imageUrl = VirtualPathUtility.ToAbsolute(uploadPath);

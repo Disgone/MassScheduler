@@ -12,7 +12,7 @@ namespace MassScheduler.Controllers
 
         public ActionResult Index()
         {
-            var speakers = Db.Speakers.OrderBy(x => x.Name);
+            var speakers = Db.Speakers.OrderBy(x => x.Name).ToList();
 
             return View(speakers);
         }
@@ -78,7 +78,7 @@ namespace MassScheduler.Controllers
 
             try
             {
-                UpdateModel(speaker, new[] {"Name", "Title", "Email", "Organization"});
+                UpdateModel(speaker, new[] {"Name", "Title", "Email", "Organization", "Bio"});
                 if (photo != null)
                 {
                     var image = UploadHelper.HandleUploadedImage(photo);
