@@ -1,3 +1,4 @@
 *.mdf
 *.ldf
 src/MassScheduler/MassScheduler/Public/uploads/
+src/MassScheduler/MassScheduler/Public/css/fonts/
