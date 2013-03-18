@@ -217,3 +217,8 @@
     clear: both;
   }
 }
+
+.rgbaBackground(@color: #FF0000, @opacity: 1) 
+{
+    background-color: hlsa(hue(@color), saturation(@color), lightness(@color), @opacity);
+}

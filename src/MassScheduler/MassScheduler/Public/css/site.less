@@ -51,7 +51,7 @@ h1, h2, h3 {
     font-weight: normal;
 }
 
-h4,h5,h6 {
+h4, h5, h6 {
     font-weight: 600;
 }
 
@@ -175,9 +175,9 @@ img {
         padding: 10px;
         background: @green;
         color: #FFF;
-        font-size: 9pt;
-        font-weight: 600;
         text-transform: uppercase;
+        font-weight: 600;
+        font-size: 9pt;
     }
 
     .event-bar {
@@ -200,9 +200,9 @@ img {
 
     dt {
         display: block;
-        font-weight: 600;
-        text-transform: uppercase;
         margin-top: 1.5em;
+        text-transform: uppercase;
+        font-weight: 600;
         .font-Label;
     }
 
@@ -240,17 +240,32 @@ img {
 }
 
 .speakers {
-    .speaker {
-        h2 {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            margin: 0;
-            padding: 2px 5px;
-            background-color: @lightGreen;
-            background-color: rgba(222, 225, 205, .9);
-            font-size: 1.25em;
+    @bg: @fontColor;
+
+    a {
+        display: block;
+
+        &:hover {
+            h2 {
+                background-color: @blue;
+                background-color: fade(@blue, 80);
+            }
         }
+    }
+
+    h2 {
+        position: absolute;
+        bottom: 0;
+        margin: 0;
+        padding: .25rem 0;
+        width: 100%;
+        background-color: @bg;
+        background-color: fade(@bg, 80);
+        color: #FFF;
+        text-align: center;
+        text-transform: uppercase;
+        .transition(background-color 200ms ease-in);
+        .font-Note();
     }
 }
 
@@ -265,7 +280,8 @@ img {
 
     li {
         display: inline;
-        margin-right: 5px;
+        margin-left: 5px;
+        line-height: 1;
     }
 }
 
@@ -568,5 +584,18 @@ form {
     a.close {
         float: right;
         font-size: .85em;
+    }
+}
+
+.panels {
+
+    .item {
+        @media all and (max-width: 1400px) {
+            width: 24%;
+        }
+
+        @media all and (max-width: 1140px) {
+            width: 32%;
+        }
     }
 }
