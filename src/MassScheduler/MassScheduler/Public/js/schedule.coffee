@@ -84,8 +84,11 @@ Schedule = (selector) ->
 
     refreshAttendees = (id) ->
         if typeof baseUrl isnt 'undefined'
-            $.get baseUrl + "/#{id}",
-                (d) ->
+            $.ajax
+                type: 'GET'
+                url:  baseUrl + "/#{id}" 
+                cache: false
+                success: (d) ->
                     $("#attendees").html(d)
                     return
 

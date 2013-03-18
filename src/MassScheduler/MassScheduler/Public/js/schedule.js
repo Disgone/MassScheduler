@@ -99,8 +99,13 @@
     };
     refreshAttendees = function(id) {
       if (typeof baseUrl !== 'undefined') {
-        return $.get(baseUrl + ("/" + id), function(d) {
-          $("#attendees").html(d);
+        return $.ajax({
+          type: 'GET',
+          url: baseUrl + ("/" + id),
+          cache: false,
+          success: function(d) {
+            $("#attendees").html(d);
+          }
         });
       }
     };
