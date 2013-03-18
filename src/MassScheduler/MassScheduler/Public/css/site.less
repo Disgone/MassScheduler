@@ -94,18 +94,19 @@ img {
     top: -.85em;
     margin-bottom: 2em;
     margin-left: -3.5em;
-    font-size: 9pt;
     text-transform: uppercase;
+    .font-Note;
 
     a {
         display: inline-block;
         color: #FFF;
-        .transition(e('color 150ms ease-in, background-color 150ms ease-out'));
+        line-height: 2;
+        .transition(e('color 200ms ease-in, background-color 200ms ease-out'));
         .block-strip(@blue);
 
         &:hover,
         &:focus {
-            background-color: darken(@green,10%);
+            background-color: darken(@blue,20%);
         }
     }
 }
@@ -129,6 +130,8 @@ img {
 }
 
 #logo {
+    margin-bottom: 2em;
+
     h1 {
         .hide();
     }
@@ -197,22 +200,23 @@ img {
 
     dt {
         display: block;
-        float: left;
-        margin-right: 5px;
-        width: 125px;
-        text-align: right;
         font-weight: 600;
         text-transform: uppercase;
+        margin-top: 1.5em;
+        .font-Label;
+    }
+
+    dt:first-child {
+        margin-top: 0;
     }
 
     dd {
-        margin-left: 135px;
-        margin-top: 1px;
+        margin-left: 0;
     }
 }
 
 .note {
-    font-size: 9pt;
+    .font-Note;
 }
 
 .panels {
@@ -267,7 +271,7 @@ img {
 
 .page-actions {
     float: right;
-    font-size: 9pt;
+    .font-Note;
 }
 
 /*
@@ -340,7 +344,7 @@ form {
 .col4 {
     position: relative;
     float: left;
-    overflow: hidden;
+    .clearfix();
 }
 
 .col1 {
@@ -349,6 +353,11 @@ form {
 
 .col2 {
     width: 50%;
+    text-align: left;
+
+    i.icon {
+        margin-left: -20px;
+    }
 }
 
 .col3 {

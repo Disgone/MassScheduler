@@ -1,0 +1,253 @@
+
+/*
+	This font software is the property of Commercial Type.
+
+	You may not modify the font software, use it on another website, or install it on a computer.
+
+	License information is available at http://commercialtype.com/eula
+	For more information please visit Commercial Type at http://commercialtype.com or email us at info[at]commercialtype.com
+
+	Copyright (C) 2013 Schwartzco Inc.
+	1208-MSWZMU
+*/
+
+	
+	.HKSSansWeb-BlackItalic { 		
+	font-family: 'HKS Sans Web';
+	font-weight: 800;
+	font-style: italic;
+	font-stretch: normal;
+	}
+	
+	
+	.HKSSansWeb-Black { 		
+	font-family: 'HKS Sans Web';
+	font-weight: 800;
+	font-style: normal;
+	font-stretch: normal;
+	}
+	
+	
+	.HKSSansWeb-BoldItalic { 		
+	font-family: 'HKS Sans Web';
+	font-weight: 700;
+	font-style: italic;
+	font-stretch: normal;
+	}
+	
+	
+	.HKSSansWeb-Bold { 		
+	font-family: 'HKS Sans Web';
+	font-weight: 700;
+	font-style: normal;
+	font-stretch: normal;
+	}
+	
+	
+	.HKSSansWeb-LightItalic { 		
+	font-family: 'HKS Sans Web';
+	font-weight: 300;
+	font-style: italic;
+	font-stretch: normal;
+	}
+	
+	
+	.HKSSansWeb-Light { 		
+	font-family: 'HKS Sans Web';
+	font-weight: 300;
+	font-style: normal;
+	font-stretch: normal;
+	}
+	
+	
+	.HKSSansWeb-RegularItalic { 		
+	font-family: 'HKS Sans Web';
+	font-weight: 400;
+	font-style: italic;
+	font-stretch: normal;
+	}
+	
+	
+	.HKSSansWeb-Regular { 		
+	font-family: 'HKS Sans Web';
+	font-weight: 400;
+	font-style: normal;
+	font-stretch: normal;
+	}
+	
+	
+	.HKSSansWeb-SemiboldItalic { 		
+	font-family: 'HKS Sans Web';
+	font-weight: 600;
+	font-style: italic;
+	font-stretch: normal;
+	}
+	
+	
+	.HKSSansWeb-Semibold { 		
+	font-family: 'HKS Sans Web';
+	font-weight: 600;
+	font-style: normal;
+	font-stretch: normal;
+	}
+	
+	
+	.HKSSansWeb-SemilightItalic { 		
+	font-family: 'HKS Sans Web';
+	font-weight: 200;
+	font-style: italic;
+	font-stretch: normal;
+	}
+	
+	
+	.HKSSansWeb-Semilight { 		
+	font-family: 'HKS Sans Web';
+	font-weight: 200;
+	font-style: normal;
+	font-stretch: normal;
+	}
+	
+	@font-face {
+	font-family: 'HKS Sans Web';
+	src: url('/public/css/fonts/HKS Sans Web-Black Italic.eot');
+	src: url('/public/css/fonts/HKS Sans Web-Black Italic.eot?#iefix') format('embedded-opentype'),
+		 url('/public/css/fonts/HKS Sans Web-Black Italic.woff') format('woff'),
+		 url('/public/css/fonts/HKS Sans Web-Black Italic.ttf') format('truetype'),
+		 url('/public/css/fonts/HKS Sans Web-Black Italic.svg#HKS Sans Web') format('svg');
+	font-weight: 800;
+	font-style: italic;
+	font-stretch: normal;
+	}
+	
+	@font-face {
+	font-family: 'HKS Sans Web';
+	src: url('/public/css/fonts/HKS Sans Web-Black.eot');
+	src: url('/public/css/fonts/HKS Sans Web-Black.eot?#iefix') format('embedded-opentype'),
+		 url('/public/css/fonts/HKS Sans Web-Black.woff') format('woff'),
+		 url('/public/css/fonts/HKS Sans Web-Black.ttf') format('truetype'),
+		 url('/public/css/fonts/HKS Sans Web-Black.svg#HKS Sans Web') format('svg');
+	font-weight: 800;
+	font-style: normal;
+	font-stretch: normal;
+	}
+	
+	@font-face {
+	font-family: 'HKS Sans Web';
+	src: url('/public/css/fonts/HKS Sans Web-Bold Italic.eot');
+	src: url('/public/css/fonts/HKS Sans Web-Bold Italic.eot?#iefix') format('embedded-opentype'),
+		 url('/public/css/fonts/HKS Sans Web-Bold Italic.woff') format('woff'),
+		 url('/public/css/fonts/HKS Sans Web-Bold Italic.ttf') format('truetype'),
+		 url('/public/css/fonts/HKS Sans Web-Bold Italic.svg#HKS Sans Web') format('svg');
+	font-weight: 700;
+	font-style: italic;
+	font-stretch: normal;
+	}
+	
+	@font-face {
+	font-family: 'HKS Sans Web';
+	src: url('/public/css/fonts/HKS Sans Web-Bold.eot');
+	src: url('/public/css/fonts/HKS Sans Web-Bold.eot?#iefix') format('embedded-opentype'),
+		 url('/public/css/fonts/HKS Sans Web-Bold.woff') format('woff'),
+		 url('/public/css/fonts/HKS Sans Web-Bold.ttf') format('truetype'),
+		 url('/public/css/fonts/HKS Sans Web-Bold.svg#HKS Sans Web') format('svg');
+	font-weight: 700;
+	font-style: normal;
+	font-stretch: normal;
+	}
+	
+	@font-face {
+	font-family: 'HKS Sans Web';
+	src: url('/public/css/fonts/HKS Sans Web-Light Italic.eot');
+	src: url('/public/css/fonts/HKS Sans Web-Light Italic.eot?#iefix') format('embedded-opentype'),
+		 url('/public/css/fonts/HKS Sans Web-Light Italic.woff') format('woff'),
+		 url('/public/css/fonts/HKS Sans Web-Light Italic.ttf') format('truetype'),
+		 url('/public/css/fonts/HKS Sans Web-Light Italic.svg#HKS Sans Web') format('svg');
+	font-weight: 300;
+	font-style: italic;
+	font-stretch: normal;
+	}
+	
+	@font-face {
+	font-family: 'HKS Sans Web';
+	src: url('/public/css/fonts/HKS Sans Web-Light.eot');
+	src: url('/public/css/fonts/HKS Sans Web-Light.eot?#iefix') format('embedded-opentype'),
+		 url('/public/css/fonts/HKS Sans Web-Light.woff') format('woff'),
+		 url('/public/css/fonts/HKS Sans Web-Light.ttf') format('truetype'),
+		 url('/public/css/fonts/HKS Sans Web-Light.svg#HKS Sans Web') format('svg');
+	font-weight: 300;
+	font-style: normal;
+	font-stretch: normal;
+	}
+	
+	@font-face {
+	font-family: 'HKS Sans Web';
+	src: url('/public/css/fonts/HKS Sans Web-Regular Italic.eot');
+	src: url('/public/css/fonts/HKS Sans Web-Regular Italic.eot?#iefix') format('embedded-opentype'),
+		 url('/public/css/fonts/HKS Sans Web-Regular Italic.woff') format('woff'),
+		 url('/public/css/fonts/HKS Sans Web-Regular Italic.ttf') format('truetype'),
+		 url('/public/css/fonts/HKS Sans Web-Regular Italic.svg#HKS Sans Web') format('svg');
+	font-weight: 400;
+	font-style: italic;
+	font-stretch: normal;
+	}
+	
+	@font-face {
+	font-family: 'HKS Sans Web';
+	src: url('/public/css/fonts/HKS Sans Web-Regular.eot');
+	src: url('/public/css/fonts/HKS Sans Web-Regular.eot?#iefix') format('embedded-opentype'),
+		 url('/public/css/fonts/HKS Sans Web-Regular.woff') format('woff'),
+		 url('/public/css/fonts/HKS Sans Web-Regular.ttf') format('truetype'),
+		 url('/public/css/fonts/HKS Sans Web-Regular.svg#HKS Sans Web') format('svg');
+	font-weight: 400;
+	font-style: normal;
+	font-stretch: normal;
+	}
+	
+	@font-face {
+	font-family: 'HKS Sans Web';
+	src: url('/public/css/fonts/HKS Sans Web-Semibold Italic.eot');
+	src: url('/public/css/fonts/HKS Sans Web-Semibold Italic.eot?#iefix') format('embedded-opentype'),
+		 url('/public/css/fonts/HKS Sans Web-Semibold Italic.woff') format('woff'),
+		 url('/public/css/fonts/HKS Sans Web-Semibold Italic.ttf') format('truetype'),
+		 url('/public/css/fonts/HKS Sans Web-Semibold Italic.svg#HKS Sans Web') format('svg');
+	font-weight: 600;
+	font-style: italic;
+	font-stretch: normal;
+	}
+	
+	@font-face {
+	font-family: 'HKS Sans Web';
+	src: url('/public/css/fonts/HKS Sans Web-Semibold.eot');
+	src: url('/public/css/fonts/HKS Sans Web-Semibold.eot?#iefix') format('embedded-opentype'),
+		 url('/public/css/fonts/HKS Sans Web-Semibold.woff') format('woff'),
+		 url('/public/css/fonts/HKS Sans Web-Semibold.ttf') format('truetype'),
+		 url('/public/css/fonts/HKS Sans Web-Semibold.svg#HKS Sans Web') format('svg');
+	font-weight: 600;
+	font-style: normal;
+	font-stretch: normal;
+	}
+	
+	@font-face {
+	font-family: 'HKS Sans Web';
+	src: url('/public/css/fonts/HKS Sans Web-Semilight Italic.eot');
+	src: url('/public/css/fonts/HKS Sans Web-Semilight Italic.eot?#iefix') format('embedded-opentype'),
+		 url('/public/css/fonts/HKS Sans Web-Semilight Italic.woff') format('woff'),
+		 url('/public/css/fonts/HKS Sans Web-Semilight Italic.ttf') format('truetype'),
+		 url('/public/css/fonts/HKS Sans Web-Semilight Italic.svg#HKS Sans Web') format('svg');
+	font-weight: 200;
+	font-style: italic;
+	font-stretch: normal;
+	}
+	
+	@font-face {
+	font-family: 'HKS Sans Web';
+	src: url('/public/css/fonts/HKS Sans Web-Semilight.eot');
+	src: url('/public/css/fonts/HKS Sans Web-Semilight.eot?#iefix') format('embedded-opentype'),
+		 url('/public/css/fonts/HKS Sans Web-Semilight.woff') format('woff'),
+		 url('/public/css/fonts/HKS Sans Web-Semilight.ttf') format('truetype'),
+		 url('/public/css/fonts/HKS Sans Web-Semilight.svg#HKS Sans Web') format('svg');
+	font-weight: 200;
+	font-style: normal;
+	font-stretch: normal;
+	}
+	

@@ -24,7 +24,10 @@ namespace MassScheduler
             bundles.Add(new ScriptBundle("~/scripts/modernizr").Include(
                  "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/css").Include("~/public/css/site.css"));
+            bundles.Add(new StyleBundle("~/css").Include(
+                "~/public/css/fonts.css",
+                "~/public/css/site.css"
+                ));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                 "~/Content/themes/base/jquery.ui.core.css",

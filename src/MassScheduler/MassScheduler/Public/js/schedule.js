@@ -112,7 +112,7 @@
     });
     $events.on('click', 'a.rsvp-button', rsvp);
     $events.on('click', 'a.cancel-rsvp-button', cancelRsvp);
-    $events.on('click', '.title-link a', togglePreview);
+    $events.on('click', 'a.title-link', togglePreview);
   };
 
   window.HKS = {

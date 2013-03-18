@@ -42,10 +42,8 @@
                                 @item.LocalStartDate.ToShortTimeString() - @item.LocalEndDate.ToShortTimeString()
                             </div>
                             <div class="col2">
-                                <div class="title-link">
-                                    <i class="icon-attending icon"></i>
-                                    @Html.ActionLink(item.Title, "details", new {id = item.Id}, new {@class = "title-link"})
-                                </div>
+                                <i class="icon-attending icon"></i>
+                                @Html.ActionLink(item.Title, "details", new {id = item.Id}, new {@class = "title-link"})
                             </div>
                             <div class="col3">
                                 @Html.DisplayFor(modelItem => item.Location)

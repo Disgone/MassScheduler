@@ -1,11 +1,22 @@
 ﻿@fontFamily: 'HKS Sans Web',Arial,sans-serif;
-@fontSize: 13px;
+@fontSize: 16px;
 @fontColor: #333;
 @lineHeight: 1.5;
 
 @green: #88A02F;
-@blue: #5c7e9b;
+@blue: #648ad6;
 @lightGreen: #DEE1CD;
+
+/* Gfx Lab Font Sizes */
+.font-Note() {
+    font-size: round(@fontSize*.8);
+}
+
+.font-Label() {
+    .font-Note();
+    font-weight: 600;
+}
+
 
 
 // CSS3 PROPERTIES

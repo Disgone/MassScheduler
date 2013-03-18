@@ -26,19 +26,26 @@
         <div class="group">
             <aside class="meeting-meta secondary med">
                 <dl>
-                    <dt>When:</dt> 
-                    <dd>@Model.LocalStartDate.ToShortTimeString() - @Model.LocalEndDate.ToShortTimeString()</dd>
-
                     <dt>Where:</dt> 
                     <dd>@Model.Location</dd>
                     <dd class="note">(NOTE: Dallas office to attend ALL presentations in the ARENA)</dd>
-                    
+
+                    <dt>When:</dt> 
+                    <dd><time>@Model.StartDate.ToLongDateString()</time></dd>
+                    <dd><time>@Model.LocalStartDate.ToShortTimeString() - @Model.LocalEndDate.ToShortTimeString()</time></dd>
+ 
                     @if (Model.Speakers.Any())
                     {
                         <dt>Speaker(s): </dt>
                         <dd>
                             @Html.DisplayFor(s => Model.Speakers, "MeetingSpeakers")
                         </dd>
+                    }
+                    
+                    @if (!String.IsNullOrEmpty(Model.Sponsor))
+                    {
+                        <dt>Sponsored By:</dt>
+                        <dd>@Model.Sponsor</dd>
                     }
                     
                     <dt>AIA Credit:</dt>
@@ -50,18 +57,13 @@
                 
             </aside>
             <article class="focus med">
-                <time>@Model.StartDate.ToLongDateString() @@ @Model.LocalStartDate.ToShortTimeString()</time>
+                
                 @Html.Markdown(Model.Descritpion)
                 
                 <p>
                     <strong>Lync Meeting Url:</strong>
                     <a href="@Model.MeetingUrl">@Model.MeetingUrl</a>
                 </p>
-                
-                @if (!String.IsNullOrEmpty(Model.Sponsor))
-                {
-                    <p><strong>Sponsored by <em>@Model.Sponsor</em></strong></p>
-                }
                 
                 <ul class='action-bar'>
                     @if (!Model.HasEnded()) 
