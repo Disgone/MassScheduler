@@ -19,7 +19,7 @@ namespace MassScheduler.Models
         public string Title { get; set; }
 
         [DataType(DataType.MultilineText)]
-        public string Descritpion { get; set; }
+        public string Description { get; set; }
 
         [Display(Name = "Start Date")]
         [Required(ErrorMessage = "Start date is required.")]
