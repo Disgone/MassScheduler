@@ -93,11 +93,6 @@ namespace MassScheduler.Controllers
                 return HttpNotFound();
             }
 
-            if (meeting.Creator != CurrentUser.Username)
-            {
-                return View("InvalidOwner");
-            }
-
             meeting.StartDate = TimeZone.CurrentTimeZone.ToLocalTime(meeting.StartDate);
             meeting.EndDate = TimeZone.CurrentTimeZone.ToLocalTime(meeting.EndDate);
 
@@ -114,11 +109,6 @@ namespace MassScheduler.Controllers
             if (meeting == null)
             {
                 return HttpNotFound();
-            }
-
-            if (meeting.Creator != CurrentUser.Username)
-            {
-                return View("InvalidOwner");
             }
 
             meeting.Speakers.Clear();

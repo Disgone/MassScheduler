@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Security.Principal;
 using System.Web;
@@ -24,6 +25,8 @@ namespace MassScheduler
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Database.SetInitializer<MeetingContext>(null);
         }
 
         protected void Application_PostAuthorizeRequest()

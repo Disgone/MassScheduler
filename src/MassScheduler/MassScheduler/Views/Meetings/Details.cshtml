@@ -11,7 +11,7 @@
         @Html.ActionLink("Events", "index", "meetings")
     </span>
     <header>
-        @if (user.Username == Model.Creator)
+        @if (User.IsInRole(@"hks-a\GreenweekAdmin"))
         {
             <nav class="page-actions">
                 <ul class="action-bar">
@@ -58,7 +58,7 @@
             </aside>
             <article class="focus med">
                 
-                @Html.Markdown(Model.Descritpion)
+                @Html.Markdown(Model.Description)
                 
                 <p>
                     <strong>Lync Meeting Url:</strong>
